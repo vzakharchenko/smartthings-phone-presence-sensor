@@ -1,0 +1,51 @@
+{
+  "server": {
+    "port": 5000,
+    "debug": true
+  },
+  "smartapp": {
+    "appId": "<GUEST_NETWORK_SMARTTHINGS_APP_ID>",
+    "accessToken": "<GUEST_NETWORK_SMARTTHINGS_SECRET_ID>"
+  },
+  "asus": {
+    "smartThingsUrl": "https://graph-eu01-euwest1.api.smartthings.com",
+    "routerIp": "<ROUTER IP>",
+    "routerPort": 80,
+    "httpOrhttps": "http",
+    "userName": "<USERNAME>",
+    "password": "<PASSWORD>",
+    "guestWifi": {
+      "guestWifiDefaultTemplate": {
+        "bss_enabled": "1",
+        "ssid": "SmartThings_Guest",
+        "auth_mode_x": "pskpsk2",
+        "crypto": "aes",
+        "key": "1",
+        "psk": null,
+        "lanaccess": "off",
+        "expire": "0",
+        "expire_tmp": "0",
+        "macmode": "disabled",
+        "mbss": "1",
+        "wpa_psk": "",
+        "wl_unit": "0",
+        "wl_subunit": "1",
+        "action_mode": "apply"
+      }
+    }
+  },
+  "smartthings": {
+    "User1": {
+      "mac": [
+        "XX:XX:XX:XX:XX:XX",
+        "XX:XX:XX:XX:XX:XX"
+      ]
+    },
+    "User2": {
+      "mac": [
+        "YY:YY:YY:YY:YY:YY",
+        "YY:YY:YY:YY:YY:YY"
+      ]
+    }
+  }
+}

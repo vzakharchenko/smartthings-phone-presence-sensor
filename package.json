@@ -1,0 +1,53 @@
+{
+  "name": "AsusGuestNetwork",
+  "version": "1.0.0",
+  "description": "asus guest network manager",
+  "main": "server.js",
+  "scripts": {
+    "start": "node  server.js ",
+    "lint": "eslint --ext .js lib/* server.js",
+    "lint:fix": "eslint --fix --ext .js lib/* server.js"
+  },
+  "author": "vzakharchenko",
+  "license": "ISC",
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": false,
+      "jest": true
+    },
+    "rules": {
+      "no-console": 0,
+      "prefer-promise-reject-errors": 0,
+      "prefer-destructuring": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "base-64": "^0.1.0",
+    "dateformat": "^3.0.3",
+    "express": "^4.15.2",
+    "log4js": "^3.0.5",
+    "request": "^2.88.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^4.12.1",
+    "eslint-config": "^0.3.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1"
+  }
+}
