@@ -7,7 +7,7 @@
     "start": "node  server.js ",
     "lint": "eslint --ext .js lib/* server.js",
     "lint:fix": "eslint --fix --ext .js lib/* server.js",
-    "start-boot": "pm2 start server.js"
+    "start-boot": "pm2 start AsusSmartAppServer.js"
   },
   "author": "vzakharchenko",
   "license": "ISC",
