@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node  server.js ",
     "lint": "eslint --ext .js lib/* server.js",
-    "lint:fix": "eslint --fix --ext .js lib/* server.js"
+    "lint:fix": "eslint --fix --ext .js lib/* server.js",
+    "start-boot": "npm install pm2 -g && pm2 start server.js"
   },
   "author": "vzakharchenko",
   "license": "ISC",
@@ -33,7 +34,6 @@
     }
   },
   "dependencies": {
-    "babel-eslint": "^10.0.1",
     "base-64": "^0.1.0",
     "dateformat": "^3.0.3",
     "express": "^4.15.2",
