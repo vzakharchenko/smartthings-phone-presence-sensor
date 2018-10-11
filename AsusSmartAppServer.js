@@ -48,11 +48,6 @@ server.get('/deviceMetadata', (req, res) => {
   deviceMetadata(req, res);
 });
 
-server.get('/deviceMetadata', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  deviceMetadata(req, res);
-});
-
 server.get('/blockMac', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockUserMac(req, res);
