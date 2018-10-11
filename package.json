@@ -2,7 +2,7 @@
   "name": "AsusGuestNetwork",
   "version": "1.0.0",
   "description": "asus guest network manager",
-  "main": "server.js",
+  "main": "AsusSmartAppServer.js",
   "scripts": {
     "start": "node  server.js ",
     "lint": "eslint --ext .js lib/* server.js",
