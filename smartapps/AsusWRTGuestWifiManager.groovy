@@ -19,7 +19,7 @@ def config() {
             input "IP", "string", multiple: false, required: true
         }
         section("Setup my device first port") {
-            input "port", "number", multiple: false, required: true, defaultValue: 4000
+            input "port", "number", multiple: false, required: true, defaultValue: 5000
         }
         section("on this hub...") {
             input "theHub", "hub", multiple: false, required: true
@@ -123,6 +123,7 @@ def routerInitialization() {
     debug("json.guestWiFi = ${json.guestWiFi}")
     def usersDevices = filterUsersDevices(json.users, true);
     def wifiDevices = json.guestWiFi;
+    state.wifiDevices = wifiDevices;
     debug("usersDevices =${usersDevices}");
     debug("wifiDevices =${wifiDevices}");
     state.backendInitialized = true;
@@ -184,9 +185,9 @@ def responsePresent() {
                 def blocked = searchMac(json.blockedMacs, macs)
                 debug("blocked: $blocked")
                 if (blocked != null) {
-                    device.sendEvent(name: "switch", value: 'off');
+                    it.sendEvent(name: "switch", value: 'off');
                 } else {
-                    device.sendEvent(name: "switch", value: 'on');
+                    it.sendEvent(name: "switch", value: 'on');
                 }
             } else {
                 it.sendEvent(name: "presence", value: 'no presence');
@@ -307,7 +308,7 @@ def pollGuestNetwork(d) {
 
 def apiGet(path, query) {
     def url = "${IP}:${port}";
-    log.debug "request:  ${url}${path}"
+    log.debug "request:  ${url}${path} query= ${query}"
     def result = new physicalgraph.device.HubAction(
             method: 'GET',
             path: path,
@@ -356,7 +357,8 @@ def switchOnHandler(evt) {
     if (evt.getDevice().getTypeName() == "Asus Guest Network") {
         apiGet('/createGuestNetwork', [wifiName: evt.getDevice().currentState('guestWiFi').getStringValue()])
     } else if (evt.getDevice().getTypeName() == "Mobile WIFI Presence") {
-        apiGet('/blockMac', [macs: evt.getDevice().currentState('mac').getStringValue(), status: 0, inLimit: 100, outLimit: 100])
+        def macs = evt.getDevice().currentState('mac').getStringValue();
+        apiGet('/blockMac', [macs: macs, status: "0", inLimit: "100", outLimit: "100"])
     } else {
         debug(" switchOnHandler=${evt.getDevice.getName()} ON")
     }
@@ -368,7 +370,7 @@ def switchOffHandler(evt) {
         debug("${evt.getDevice().getName()} guestWiFi=${evt.getDevice().currentState('guestWiFi').getStringValue()}")
         apiGet('/deleteGuestNetwork', [wifiName: evt.getDevice().currentState('guestWiFi').getStringValue()])
     } else if (evt.getDevice().getTypeName() == "Mobile WIFI Presence") {
-        apiGet('/blockMac', [macs: evt.getDevice().currentState('mac').getStringValue(), status: 0, inLimit: 10, outLimit: 10])
+        apiGet('/blockMac', [macs: evt.getDevice().currentState('mac').getStringValue(), status: "1", inLimit: "2", outLimit: "2"])
     } else {
         debug(" switchOffHandler=${evt.getDevice.getName()} ON")
     }
