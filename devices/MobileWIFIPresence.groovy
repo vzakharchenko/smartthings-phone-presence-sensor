@@ -8,6 +8,8 @@ metadata {
         attribute "user", "string"
         command refresh
         command getMacList
+        command arrivedWiFi
+        command departedWiFI
     }
 
     simulator {
@@ -15,33 +17,40 @@ metadata {
         status "not present": "presence: 0"
     }
 
-    tiles {
-        multiAttributeTile(name: "switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
-            tileAttribute("device.switch", key: "PRIMARY_CONTROL") {
-                attributeState "on", label: '${name}', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#79b821", nextState: "off"
-                attributeState "off", label: '${name}', action: "switch.on", icon: "st.switches.switch.off", backgroundColor: "#ffffff", nextState: "On"
-            }
-            tileAttribute("device.presence", key: "SECONDARY_CONTROL") {
-                attributeState "presence", label: '${name}', action: "present", icon: "st.presence.tile.mobile-present", backgroundColor: "#00A0DC"
-                attributeState "not present", label: '${name}', action: "not presence", icon: "st.presence.tile.mobile-not-present", backgroundColor: "#ffffff"
-            }
+    tiles(scale: 2) {
 
+        standardTile("presence", "device.presence", width: 6, height: 2, canChangeBackground: true) {
+            state("present", action: "present", labelIcon: "st.presence.tile.mobile-present", backgroundColor: "#53a7c0")
+            state("not present", action: " not present", labelIcon: "st.presence.tile.mobile-not-present", backgroundColor: "#ffffff")
         }
 
+        standardTile("switch", "device.switch", width: 6, height: 4, canChangeIcon: true) {
+            state "off", label: 'Internet', action: "switch.on",
+                    icon: "st.switches.switch.off", backgroundColor: "#ffffff"
+            state "on", label: 'Internet', action: "switch.off",
+                    icon: "st.switches.switch.on", backgroundColor: "#00a0dc"
+        }
 
+        valueTile("mac", "device.mac", width: 3, height: 1) {
+            state "mac", label: '${currentValue}\n', unit: "KWh"
+        }
 
-        main "switch"
-        details "switch"
+        // the "switch" tile will appear in the Things view
+        main("presence")
+
+        // the "switch" and "power" tiles will appear in the Device Details
+        // view (order is left-to-right, top-to-bottom)
+        details(["presence", "switch", "mac"])
     }
 }
 
-// def arrivedWiFi(){
-//    sendEvent(name: "presence", value: 'present')
-// }
+def arrivedWiFi() {
+    sendEvent(name: "presence", value: 'present')
+}
 
-// def departedWiFI(){
-//    sendEvent(name: "presence", value: 'not present')
-//}
+def departedWiFI() {
+    sendEvent(name: "presence", value: 'not present')
+}
 
 // handle commands
 def on() {

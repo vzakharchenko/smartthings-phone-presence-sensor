@@ -14,43 +14,31 @@ metadata {
         attribute "startDate", "date"
         command refresh;
         command updateNetworkSettings;
+        command getSSID;
     }
 
-    tiles {
-        standardTile("button", "device.switch", width: 2, height: 2, canChangeIcon: true) {
-            state "off", label: 'Off', action: "switch.on", icon: "st.switches.switch.off", backgroundColor: "#ffffff", nextState: "on"
-            state "on", label: 'On', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#00A0DC", nextState: "off"
+    tiles(scale: 1) {
+        standardTile("button", "device.switch", width: 3, height: 2, canChangeIcon: true) {
+            state "off", label: 'WiFi  Off', action: "switch.on", icon: "st.switches.switch.off", backgroundColor: "#ffffff", nextState: "on"
+            state "on", label: 'WiFi On', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#00A0DC", nextState: "off"
+        }
+        valueTile("ssid", "device.ssid", width: 3, height: 1) {
+            state "ssid", label: '${currentValue}\n'
+        }
+        valueTile("wpa_psk", "device.wpa_psk", width: 3, height: 1) {
+            state "wpa_psk", label: '${currentValue}\n'
         }
         main "button"
-        details "button"
+        details(["button", "ssid", "wpa_psk"])
     }
     preferences {
-        page(name: "config");
-
-    }
-}
-
-def config() {
-    dynamicPage(name: "config", title: "Asus Guest Network", refreshInterval: 2) {
-
-
         section("Guest WiFi Network Name") {
-            input("ssid", "text", title: "Network Name (SSID)", required: true, description: "Guest WiFi Network Name (SSID)", defaultValue: state.ssid)
-        }
-        section("WiFi Password Settings") {
-            input("wpa_psk_type", "enum", title: "What Password do you whant to use", required: true, description: "Password Type", options: [
-                    "StaticPassword" : "Your Password",
-                    "OneDayPassword" : "One Day Password",
-                    "OneWeekPassword": "One Week Password"
-            ], "defaultValue": state.wpa_psk_type)
+            input("ssid", "text", title: "New Network Name (SSID)", required: false, description: "Guest WiFi Network Name (SSID)")
         }
 
-        section(wpa_psk_type == "StaticPassword") {
-            input("wpa_psk", "text", title: "Network Key (Password) ", required: false, description: "Guest WiFi Password")
-        }
+
     }
 }
-
 // handle commands
 def on() {
     changeStateOn();
@@ -75,6 +63,9 @@ def updateNetworkSettings(ssid, wpa_psk) {
 }
 
 def initialize() {
+    if (settings.ssid != null) {
+        sendEvent(name: "ssid", value: settings.ssid);
+    }
 }
 
 def installed() {
@@ -85,21 +76,30 @@ def updated() {
     initialize();
 }
 
+def getSSID() {
+    if (settings.ssid != null) {
+        return settings.ssid;
+    }
+    return getDevice().currentState("ssid").getStringValue();
+}
+
 def refresh() {
     debug("starting refreshing Device: $getDevice()")
     def meta = parent.pollGuestNetwork(getDevice())
-    sendEvent(name: "ssid", value: "");
+    sendEvent(name: "ssid", value: "SmartThings");
     sendEvent(name: "wpa_psk", value: "");
     sendEvent(name: "switch", value: "off");
     sendEvent(name: "startDate", value: new Date(0));
     sendEvent(name: "guestWiFi", value: meta.name);
     sendEvent(name: "guestWiFiId", value: meta.id);
+    sendEvent(name: "wpa_psk_type", value: "OneDayPassword");
+
 
     ssid
 }
 
 def debug(message) {
-    def debug = true;
+    def debug = false;
     if (debug) {
         log.debug message
     }

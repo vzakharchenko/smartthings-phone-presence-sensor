@@ -4,9 +4,9 @@
   "description": "asus guest network manager",
   "main": "AsusSmartAppServer.js",
   "scripts": {
-    "start": "node  server.js ",
-    "lint": "eslint --ext .js lib/* server.js",
-    "lint:fix": "eslint --fix --ext .js lib/* server.js",
+    "start": "node  AsusSmartAppServer.js ",
+    "lint": "eslint --ext .js lib/* AsusSmartAppServer.js",
+    "lint:fix": "eslint --fix --ext .js lib/* AsusSmartAppServer.js",
     "start-boot": "pm2 start AsusSmartAppServer.js"
   },
   "author": "vzakharchenko",

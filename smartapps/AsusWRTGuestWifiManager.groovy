@@ -178,9 +178,9 @@ def responsePresent() {
             if (macs != null) {
                 def mac = searchMac(maclist, macs)
                 if (mac != null) {
-                    it.sendEvent(name: "presence", value: 'presence');
+                    it.arrivedWiFi();
                 } else {
-                    it.sendEvent(name: "presence", value: 'no presence');
+                    it.departedWiFI();
                 }
                 def blocked = searchMac(json.blockedMacs, macs)
                 debug("blocked: $blocked")
@@ -355,7 +355,7 @@ private createGuestWifi(wifiName) {
 
 def switchOnHandler(evt) {
     if (evt.getDevice().getTypeName() == "Asus Guest Network") {
-        apiGet('/createGuestNetwork', [wifiName: evt.getDevice().currentState('guestWiFi').getStringValue()])
+        apiGet('/createGuestNetwork', [wifiName: evt.getDevice().currentState('guestWiFi').getStringValue(), ssid: evt.getDevice().getSSID()])
     } else if (evt.getDevice().getTypeName() == "Mobile WIFI Presence") {
         def macs = evt.getDevice().currentState('mac').getStringValue();
         apiGet('/blockMac', [macs: macs, status: "0", inLimit: "100", outLimit: "100"])
@@ -367,8 +367,7 @@ def switchOnHandler(evt) {
 
 def switchOffHandler(evt) {
     if (evt.getDevice().getTypeName() == "Asus Guest Network") {
-        debug("${evt.getDevice().getName()} guestWiFi=${evt.getDevice().currentState('guestWiFi').getStringValue()}")
-        apiGet('/deleteGuestNetwork', [wifiName: evt.getDevice().currentState('guestWiFi').getStringValue()])
+        apiGet('/deleteGuestNetwork', [wifiName: evt.getDevice().currentState('guestWiFi').getStringValue(), ssid: evt.getDevice().getSSID()])
     } else if (evt.getDevice().getTypeName() == "Mobile WIFI Presence") {
         apiGet('/blockMac', [macs: evt.getDevice().currentState('mac').getStringValue(), status: "1", inLimit: "2", outLimit: "2"])
     } else {
