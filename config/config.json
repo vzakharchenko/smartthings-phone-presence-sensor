@@ -31,7 +31,7 @@
         "wl_unit": "0",
         "wl_subunit": "1",
         "action_mode": "apply",
-        "rc_service": "restart_wireless"
+        "rc_service": "restart_wireless;restart_qos;restart_firewall;"
       }
     }
   },
