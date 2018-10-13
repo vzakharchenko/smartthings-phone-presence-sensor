@@ -14,7 +14,6 @@ metadata {
         attribute "startDate", "date"
         command refresh;
         command updateNetworkSettings;
-        command getSSID;
     }
 
     tiles(scale: 1) {
@@ -30,13 +29,6 @@ metadata {
         }
         main "button"
         details(["button", "ssid", "wpa_psk"])
-    }
-    preferences {
-        section("Guest WiFi Network Name") {
-            input("ssid", "text", title: "New Network Name (SSID)", required: false, description: "Guest WiFi Network Name (SSID)")
-        }
-
-
     }
 }
 // handle commands
@@ -76,26 +68,16 @@ def updated() {
     initialize();
 }
 
-def getSSID() {
-    if (settings.ssid != null) {
-        return settings.ssid;
-    }
-    return getDevice().currentState("ssid").getStringValue();
-}
-
 def refresh() {
     debug("starting refreshing Device: $getDevice()")
     def meta = parent.pollGuestNetwork(getDevice())
-    sendEvent(name: "ssid", value: "SmartThings");
+    sendEvent(name: "ssid", value: getDevice().getDisplayName());
     sendEvent(name: "wpa_psk", value: "");
     sendEvent(name: "switch", value: "off");
     sendEvent(name: "startDate", value: new Date(0));
     sendEvent(name: "guestWiFi", value: meta.name);
     sendEvent(name: "guestWiFiId", value: meta.id);
     sendEvent(name: "wpa_psk_type", value: "OneDayPassword");
-
-
-    ssid
 }
 
 def debug(message) {
