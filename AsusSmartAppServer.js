@@ -2,36 +2,36 @@ const express = require('express');
 const env = require('./lib/env.js');
 const { smartthingsInit } = require('./lib/smartthingsConnection.js');
 const {
-  createNetwork, deleteNetwork, getNetwork, getAllNetwork,
+  createNetwork, deleteNetwork, getAllNetwork,
 } = require('./lib/modifyNetwork.js');
 const {
-  presenceMobiles, deviceMetadata, blockUserMac, blockedUserMac,
+  presenceMobiles, blockUserMac, blockedUserMac,
 } = require('./lib/presenceMobile.js');
 
 
 const server = express();
 const port = env.config.server.port;
-
+const appId = env.config.smartapp.appId;
 
 server.get('/health', (req, res) => {
   const status = { status: 'OK' };
   res.send(JSON.stringify(status));
 });
 
-server.get('/createGuestNetwork', (req, res) => {
+server.get(`/${appId}/createGuestNetwork`, (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   createNetwork(req, res);
 });
 
-server.get('/deleteGuestNetwork', (req, res) => {
+server.get(`/${appId}/deleteGuestNetwork`, (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   deleteNetwork(req, res);
 });
 
-server.get('/getGuestNetwork', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  getNetwork(req, res);
-});
+// server.get(`/getGuestNetwork`, (req, res) => {
+//   res.writeHead(200, { 'Content-Type': 'application/json' });
+//   getNetwork(req, res);
+// });
 
 server.get('/getAllNetwork', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -43,17 +43,12 @@ server.get('/presenceMobiles', (req, res) => {
   presenceMobiles(req, res);
 });
 
-server.get('/deviceMetadata', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  deviceMetadata(req, res);
-});
-
-server.get('/blockMac', (req, res) => {
+server.get(`/${appId}/blockMac'`, (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockUserMac(req, res);
 });
 
-server.get('/BlockedMacs', (req, res) => {
+server.get(`/${appId}/BlockedMacs`, (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockedUserMac(req, res);
 });
