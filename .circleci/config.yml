@@ -15,7 +15,7 @@ jobs:
             - "55:d4:38:8c:6f:4d:a9:d5:95:c0:0e:7a:d6:f1:ee:7e"
       - run:
           name: fix host authenticity for production server
-          command: ssh-keyscan $SERVER_HOST >> ~/.ssh/known_hosts
+          command: ssh-keyscan -p $SERVER_PORT $SERVER_HOST >> ~/.ssh/known_hosts
       - run:
           name: install
           command: npm i
