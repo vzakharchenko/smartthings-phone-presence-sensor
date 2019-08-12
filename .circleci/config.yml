@@ -1,0 +1,40 @@
+version: 2 # use CircleCI 2.0
+jobs:
+  build:
+    working_directory: ~/droidspyserver # directory where steps will run
+
+    docker: # run the steps with Docker
+      - image: circleci/node:12.8
+
+    steps: # a collection of executable commands
+
+      - checkout # check out source code to working directory
+
+      - add_ssh_keys:
+          fingerprints:
+            - "55:d4:38:8c:6f:4d:a9:d5:95:c0:0e:7a:d6:f1:ee:7e"
+      - run:
+          name: fix host authenticity for production server
+          command: ssh-keyscan $SERVER_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: install
+          command: npm i
+      - run:
+          name: lint
+          command: npm run lint
+      - run:
+          name: checkout master
+          command: ssh $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'rm -rf /opt/app/asus && cd  /opt/app && git clone https://github.com/vzakharchenko/smartthings_asus_router asus'
+      - run:
+          name: install
+          command: ssh $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && npm i'
+      - run:
+          name: node start
+          command: ssh $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && npm run start'
+      - run:
+          name: stop service
+          command: ssh $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && pm2 stop AsusSmartAppServer.js && pm2 delete AsusSmartAppServer.js'
+      - run:
+          name: start service
+          command: ssh $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && pm2 start AsusSmartAppServer.js  && pm2 save'
+
