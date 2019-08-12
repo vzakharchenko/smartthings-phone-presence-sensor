@@ -2,7 +2,7 @@ const express = require('express');
 const env = require('./lib/env.js');
 const { smartthingsInit } = require('./lib/smartthingsConnection.js');
 const {
-  createNetwork, deleteNetwork, getAllNetwork,
+  createNetwork, deleteNetwork,
 } = require('./lib/modifyNetwork.js');
 const {
   presenceMobiles, blockUserMac, blockedUserMac,
@@ -35,7 +35,8 @@ server.get(`/${appId}/deleteGuestNetwork`, (req, res) => {
 
 server.get('/getAllNetwork', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  getAllNetwork(req, res);
+  // getAllNetwork(req, res);
+  res.end(JSON.stringify({ status: 'OK' }));// todo  return back getAllNetwork(req, res);
 });
 
 server.get('/presenceMobiles', (req, res) => {
