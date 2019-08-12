@@ -13,7 +13,7 @@ const {
 const { getListComponents } = require('./lib/componentManager');
 const { smartthingsInit } = require('./lib/smartthingsConnection.js');
 const {
-  createNetwork, deleteNetwork, getAllNetworkUI,
+  createNetwork, deleteNetwork, getAllNetwork, getAllNetworkUI,
 } = require('./lib/modifyNetwork.js');
 const {
   presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
@@ -31,6 +31,7 @@ const corsOptions = {
 
 const server = express();
 server.use(bodyParser.json());
+server.use(cors(corsOptions));
 const port = env.config.server.port;
 const appId = env.config.smartapp.appId;
 
@@ -57,8 +58,7 @@ server.get(`/${appId}/deleteGuestNetwork`, cors(corsOptions), (req, res) => {
 
 server.get('/getAllNetwork', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  // getAllNetwork(req, res);
-  res.end(JSON.stringify({ status: 'OK' }));// todo  return back getAllNetwork(req, res);
+  getAllNetwork(req, res);
 });
 
 server.get('/presenceMobiles', cors(corsOptions), (req, res) => {

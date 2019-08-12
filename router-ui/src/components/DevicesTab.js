@@ -1,15 +1,17 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import Loading from "./Loading";
-import {DropdownButton, Table, Dropdown, ButtonToolbar} from "react-bootstrap";
+import {DropdownButton, Table, Dropdown, ButtonToolbar, Button} from "react-bootstrap";
 
 export default
 @inject('devicesStore', 'usersStore')
 @observer
 class DevicesTab extends React.Component {
 
-    assignHandle = (userId, mac) => {
-        this.props.usersStore.assignHandle(userId, mac);
+    onChange = (option) => {
+        const username = option.target.value;
+        const mac = option.target.id;
+        this.props.usersStore.assignMac(username, mac);
     };
 
     componentDidMount() {
@@ -51,19 +53,23 @@ class DevicesTab extends React.Component {
                     {
                         devices.map((device) => {
                                 const {nickName, name, vendor, mac} = device;
+                                const userAssigned = macUserList[mac];
                                 return <tr key={mac}>
                                     <td>{name}</td>
                                     <td>{nickName}</td>
                                     <td>{vendor}</td>
                                     <td>{mac}</td>
                                     <td>
-                                        <select id="select user"
-                                                name="leaveCode"
-                                                value={macUserList[mac]?macUserList[mac].username: '0' }
+                                        <select id={mac}
+                                                name="user" onChange={this.onChange}
                                         >
-                                            {!macUserList[mac]? <option value="0"></option>: null }
-                                            {userList.map(username=>
-                                                <option value={username}>{username}</option>
+                                            {!userAssigned? <option value="0" selected></option>: null }
+                                            {userList.map(username=> {
+                                                return userAssigned && username === userAssigned.username ?
+                                                    <option value={username} selected >{username}</option>:
+                                                    <option value={username} >{username}</option>
+                                            }
+
                                             )}
                                         </select></td>
                                 </tr>
