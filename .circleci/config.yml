@@ -1,7 +1,7 @@
 version: 2 # use CircleCI 2.0
 jobs:
   build:
-    working_directory: ~/droidspyserver # directory where steps will run
+    working_directory: ~/smartthings_asus_router # directory where steps will run
 
     docker: # run the steps with Docker
       - image: circleci/node:12.8
@@ -16,6 +16,36 @@ jobs:
 #      - run:
 #          name: fix host authenticity for production server
 #          command: ssh-keyscan -p $SERVER_PORT $SERVER_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: backend install
+          command: npm i
+      - run:
+          name: ui install
+          command: cd router-ui && npm i
+      - run:
+          name: backend lint
+          command: npm run lint
+      - run:
+          name: ui lint
+          command: cd router-ui && npm run lint
+  buildMaster:
+    working_directory: ~/smartthings_asus_router_Master # directory where steps will run
+    branches:
+      only:
+        - master
+    docker: # run the steps with Docker
+      - image: circleci/node:12.8
+
+    steps: # a collection of executable commands
+
+      - checkout # check out source code to working directory
+
+      - add_ssh_keys:
+          fingerprints:
+            - "55:d4:38:8c:6f:4d:a9:d5:95:c0:0e:7a:d6:f1:ee:7e"
+      #      - run:
+      #          name: fix host authenticity for production server
+      #          command: ssh-keyscan -p $SERVER_PORT $SERVER_HOST >> ~/.ssh/known_hosts
       - run:
           name: backend install
           command: npm i
