@@ -11,7 +11,7 @@ const {
   removeUser,
 } = require('./lib/userManager');
 const { getListComponents } = require('./lib/componentManager');
-const { smartthingsInit } = require('./lib/smartthingsConnection');
+// const { smartthingsInit } = require('./lib/smartthingsConnection');
 const {
   createNetwork, deleteNetwork, getAllNetwork, getAllNetworkUI,
 } = require('./lib/modifyNetwork');
@@ -35,8 +35,8 @@ const corsOptions = {
 const server = express();
 server.use(bodyParser.json());
 server.use(cors(corsOptions));
-const port = env.config.server.port;
-const appId = env.config.smartapp.appId;
+const { port } = env.config.server;
+const { appId } = env.config.smartapp;
 
 
 server.get('/health', cors(corsOptions), (req, res) => {
@@ -133,17 +133,19 @@ server.post('/ui/removeMacToUser', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   removeMacToUser(req, res);
 });
-
-smartthingsInit().then((res) => {
-  console.info(`app initialized successfully ${res}`);
-  server.listen(port, () => {
-    console.info(`HTTP asus-guest-network listening on port ${port}`);
-  });
-}).catch((e) => {
-  console.error(`Initialization error: ${e}`);
-  console.error('Please first install DTH`s then smartapp, Do not forget to enable OAuth in SmartApp IDE settings!');
-  console.error('and after that edit ./config/config.js, and setup smartapp.appId and smartapp.accessToken');
-  console.info(`Current appId=${env.config.smartapp.appId}`);
-  console.info(`Current accessToken=${env.config.smartapp.accessToken}`);
+server.listen(port, () => {
+  console.info(`HTTP asus-guest-network listening on port ${port}`);
 });
 
+// smartthingsInit().then((res) => {
+//   console.info(`app initialized successfully ${res}`);
+//
+// }).catch((e) => {
+//   console.error(`Initialization error: ${e}`);
+//   console.error('Please first install DTH`s then smartapp,
+//   Do not forget to enable OAuth in SmartApp IDE settings!');
+//   console.error('and after that edit ./config/config.js,
+//   and setup smartapp.appId and smartapp.accessToken');
+//   console.info(`Current appId=${env.config.smartapp.appId}`);
+//   console.info(`Current accessToken=${env.config.smartapp.accessToken}`);
+// });

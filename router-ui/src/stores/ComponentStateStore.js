@@ -31,6 +31,16 @@ export class ComponentStateStore {
 
     @observable asusSetting = null;
 
+    @observable routerMessage = null;
+
+    @observable smartThingMessage = null;
+
+    @observable routerError = false;
+
+    @observable smartThingError = false;
+
+    @observable status = null;
+
     parseState(data) {
       const res = JSON.parse(data);
       this.users = res.data.includes('users');
@@ -41,6 +51,11 @@ export class ComponentStateStore {
       this.devices = res.data.includes('devices');
       this.serverConfig = res.data.includes('serverConfig');
       this.smartapp = res.data.includes('smartapp');
+      this.routerError = res.data.includes('routerError');
+      this.smartThingError = res.data.includes('smartThingError');
+      this.status = res.status;
+      this.routerMessage = res.routerMessage;
+      this.smartThingMessage = res.smartThingMessage;
     }
 
     parseSetting(data) {
@@ -104,7 +119,7 @@ export class ComponentStateStore {
       sendData(`${serverUrl}ui/settings`,
         'POST',
         JSON.stringify({
-          smartApp: {
+          smartapp: {
             smartThingsUrl: this.smartappSetting.smartThingsUrl,
             appId: this.smartappSetting.appId,
             accessToken: this.smartappSetting.accessToken,

@@ -16,7 +16,7 @@ class ServerTab extends React.Component {
   }
 
     handlePortChange = (event, value) => {
-      this.props.componentStateStore.setSettingData('port', value);
+      this.props.componentStateStore.setSettingData('port', value || event.target.value);
     };
 
     handleDebugChange = (event) => {

@@ -16,23 +16,23 @@ class AsusTab extends React.Component {
   }
 
     handleIpChange = (event, value) => {
-      this.props.componentStateStore.setAsusSetting('routerIp', value);
+      this.props.componentStateStore.setAsusSetting('routerIp', value || event.target.value);
     };
 
     handlePortChange = (event, value) => {
-      this.props.componentStateStore.setAsusSetting('routerPort', value);
+      this.props.componentStateStore.setAsusSetting('routerPort', value || event.target.value);
     };
 
     handleUserNameChange = (event, value) => {
-      this.props.componentStateStore.setAsusSetting('userName', value);
+      this.props.componentStateStore.setAsusSetting('userName', value || event.target.value);
     };
 
     handlePasswordChange = (event, value) => {
-      this.props.componentStateStore.setAsusSetting('password', value);
+      this.props.componentStateStore.setAsusSetting('password', value || event.target.value);
     };
 
     saveHandle = () => {
-      this.props.componentStateStore.smartAppSave();
+      this.props.componentStateStore.asusSave();
     };
 
     render() {

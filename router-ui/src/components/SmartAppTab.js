@@ -16,15 +16,16 @@ class SmartAppTab extends React.Component {
   }
 
     handleUrlChange = (event, value) => {
-      this.props.componentStateStore.setSmartAppData('smartThingsUrl', value);
+      this.props.componentStateStore.setSmartAppData('smartThingsUrl',
+        value || event.target.value);
     };
 
     handleAppIdChange = (event, value) => {
-      this.props.componentStateStore.setSmartAppData('appId', value);
+      this.props.componentStateStore.setSmartAppData('appId', value || event.target.value);
     };
 
     handleAccessTokenChange = (event, value) => {
-      this.props.componentStateStore.setSmartAppData('accessToken', value);
+      this.props.componentStateStore.setSmartAppData('accessToken', value || event.target.value);
     };
 
     saveHandle = () => {
