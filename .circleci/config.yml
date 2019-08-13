@@ -38,6 +38,9 @@ jobs:
           name: install ui
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus/router-ui && npm i'
       - run:
+          name: build ui
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus/router-ui && npm run build:prod'
+      - run:
           name: stop service
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && pm2 stop AsusSmartAppServer.js && pm2 delete AsusSmartAppServer.js'
       - run:
