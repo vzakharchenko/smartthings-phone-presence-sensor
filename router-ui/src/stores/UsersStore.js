@@ -17,7 +17,7 @@ export class UsersStore {
       const userData = [];
       const res = JSON.parse(data);
       Object.keys(res.data).forEach((username) => {
-        const macs = res.data[username];
+        const macs = res.data[username].mac;
         userData.push({ username, macs });
       });
       this.users = userData;
