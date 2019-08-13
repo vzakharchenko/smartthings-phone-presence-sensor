@@ -20,14 +20,20 @@ jobs:
           name: install
           command: npm i
       - run:
-          name: lint
+          name: backend lint
           command: npm run lint
+      - run:
+          name: ui lint
+          command: cd router-ui && npm run lint
       - run:
           name: checkout master
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'rm -rf /opt/app/asus && cd  /opt/app && git clone https://github.com/vzakharchenko/smartthings_asus_router asus'
       - run:
-          name: install
+          name: install backend
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && npm i'
+      - run:
+          name: install ui
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus/router-ui && npm i'
       - run:
           name: stop service
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && pm2 stop AsusSmartAppServer.js && pm2 delete AsusSmartAppServer.js'

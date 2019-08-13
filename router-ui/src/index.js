@@ -9,9 +9,9 @@ import App from './components/App';
 
 const stores = {
   tabsStore,
-    componentStateStore,
-    usersStore,
-    devicesStore
+  componentStateStore,
+  usersStore,
+  devicesStore,
 };
 
 // For easier debugging

@@ -5,15 +5,14 @@ export default
 @inject('componentStateStore')
 @observer
 class InfoTab extends React.Component {
-
-    render() {
-        const {
-            asus,
-        } = this.props.componentStateStore;
-        return (
-            <h1>
-                {asus?"Asus Router Configuration":"Unknown"}
-            </h1>
-        );
-    }
+  render() {
+    const {
+      asus,
+    } = this.props.componentStateStore;
+    return (
+      <h1>
+        {asus ? 'Asus Router Configuration' : 'Unknown'}
+      </h1>
+    );
+  }
 }

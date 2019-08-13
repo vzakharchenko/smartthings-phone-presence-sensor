@@ -11,13 +11,16 @@ const {
   removeUser,
 } = require('./lib/userManager');
 const { getListComponents } = require('./lib/componentManager');
-const { smartthingsInit } = require('./lib/smartthingsConnection.js');
+const { smartthingsInit } = require('./lib/smartthingsConnection');
 const {
   createNetwork, deleteNetwork, getAllNetwork, getAllNetworkUI,
-} = require('./lib/modifyNetwork.js');
+} = require('./lib/modifyNetwork');
 const {
   presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
-} = require('./lib/presenceMobile.js');
+} = require('./lib/presenceMobile');
+const {
+  getSettings, saveSetting,
+} = require('./lib/settingManager');
 
 const corsOptions = {
   origin(o, callback) {
@@ -78,10 +81,23 @@ server.get(`/${appId}/BlockedMacs`, cors(corsOptions), (req, res) => {
 
 // BACKEND UI SERVICES
 
+server.use('/', express.static(`${__dirname}/router-ui/public`));
+
 server.get('/ui/components', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   getListComponents(req, res);
 });
+
+server.get('/ui/settings', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  getSettings(req, res);
+});
+
+server.post('/ui/settings', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  saveSetting(req, res);
+});
+
 
 server.post('/ui/addUser', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
