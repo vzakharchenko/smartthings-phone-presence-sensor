@@ -17,8 +17,11 @@ jobs:
 #          name: fix host authenticity for production server
 #          command: ssh-keyscan -p $SERVER_PORT $SERVER_HOST >> ~/.ssh/known_hosts
       - run:
-          name: install
+          name: backend install
           command: npm i
+      - run:
+          name: ui install
+          command: cd router-ui && npm i
       - run:
           name: backend lint
           command: npm run lint
