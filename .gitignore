@@ -26,4 +26,5 @@ hs_err_pid*
 node_moodules
 .idea
 config/overrideConfig.json
+package-lock.json
 

@@ -1,29 +1,55 @@
-const express = require('express');
-const env = require('./lib/env.js');
-const { smartthingsInit } = require('./lib/smartthingsConnection.js');
-const {
-  createNetwork, deleteNetwork,
-} = require('./lib/modifyNetwork.js');
-const {
-  presenceMobiles, blockUserMac, blockedUserMac,
-} = require('./lib/presenceMobile.js');
 
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const env = require('./lib/env.js');
+const {
+  addUser,
+  getUsers,
+  assignMacToUser,
+  removeMacToUser,
+  removeUser,
+} = require('./lib/userManager');
+const { getListComponents } = require('./lib/componentManager');
+const { smartthingsInit } = require('./lib/smartthingsConnection');
+const {
+  createNetwork, deleteNetwork, getAllNetwork, getAllNetworkUI,
+} = require('./lib/modifyNetwork');
+const {
+  presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
+} = require('./lib/presenceMobile');
+const {
+  getSettings, saveSetting,
+} = require('./lib/settingManager');
+
+const corsOptions = {
+  origin(o, callback) {
+    callback(null, true);
+  },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: true,
+  credentials: true,
+  maxAge: 3600,
+};
 
 const server = express();
+server.use(bodyParser.json());
+server.use(cors(corsOptions));
 const port = env.config.server.port;
 const appId = env.config.smartapp.appId;
 
-server.get('/health', (req, res) => {
+
+server.get('/health', cors(corsOptions), (req, res) => {
   const status = { status: 'OK' };
   res.send(JSON.stringify(status));
 });
 
-server.get(`/${appId}/createGuestNetwork`, (req, res) => {
+server.get(`/${appId}/createGuestNetwork`, cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   createNetwork(req, res);
 });
 
-server.get(`/${appId}/deleteGuestNetwork`, (req, res) => {
+server.get(`/${appId}/deleteGuestNetwork`, cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   deleteNetwork(req, res);
 });
@@ -33,25 +59,79 @@ server.get(`/${appId}/deleteGuestNetwork`, (req, res) => {
 //   getNetwork(req, res);
 // });
 
-server.get('/getAllNetwork', (req, res) => {
+server.get('/getAllNetwork', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  // getAllNetwork(req, res);
-  res.end(JSON.stringify({ status: 'OK' }));// todo  return back getAllNetwork(req, res);
+  getAllNetwork(req, res);
 });
 
-server.get('/presenceMobiles', (req, res) => {
+server.get('/presenceMobiles', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   presenceMobiles(req, res);
 });
 
-server.get(`/${appId}/blockMac'`, (req, res) => {
+server.get(`/${appId}/blockMac'`, cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockUserMac(req, res);
 });
 
-server.get(`/${appId}/BlockedMacs`, (req, res) => {
+server.get(`/${appId}/BlockedMacs`, cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockedUserMac(req, res);
+});
+
+// BACKEND UI SERVICES
+
+server.use('/', express.static(`${__dirname}/router-ui/public`));
+
+server.get('/ui/components', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  getListComponents(req, res);
+});
+
+server.get('/ui/settings', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  getSettings(req, res);
+});
+
+server.post('/ui/settings', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  saveSetting(req, res);
+});
+
+
+server.post('/ui/addUser', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  addUser(req, res);
+});
+
+server.post('/ui/removeUser', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  removeUser(req, res);
+});
+
+server.get('/ui/getUsers', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  getUsers(req, res);
+});
+
+server.get('/ui/networks', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  getAllNetworkUI(req, res);
+});
+
+server.get('/ui/presenceMobiles', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  presenceMobilesUI(req, res);
+});
+
+server.post('/ui/assignMac', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  assignMacToUser(req, res);
+});
+
+server.post('/ui/removeMacToUser', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  removeMacToUser(req, res);
 });
 
 smartthingsInit().then((res) => {
