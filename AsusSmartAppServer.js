@@ -18,9 +18,13 @@ const {
 const {
   presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
 } = require('./lib/presenceMobile');
+
 const {
   getSettings, saveSetting,
 } = require('./lib/settingManager');
+const {
+  connectKeycloak, protect,
+} = require('./lib/keycloakConnection');
 
 const corsOptions = {
   origin(o, callback) {
@@ -33,8 +37,13 @@ const corsOptions = {
 };
 
 const server = express();
+
 server.use(bodyParser.json());
+
 server.use(cors(corsOptions));
+
+connectKeycloak(server);
+
 const { port } = env.config.server;
 const { appId } = env.config.smartapp;
 
@@ -81,71 +90,58 @@ server.get(`/${appId}/BlockedMacs`, cors(corsOptions), (req, res) => {
 
 // BACKEND UI SERVICES
 
-server.use('/', express.static(`${__dirname}/router-ui/public`));
+server.use('/', protect(), express.static(`${__dirname}/router-ui/public`));
 
-server.get('/ui/components', cors(corsOptions), (req, res) => {
+server.get('/ui/components', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   getListComponents(req, res);
 });
 
-server.get('/ui/settings', cors(corsOptions), (req, res) => {
+server.get('/ui/settings', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   getSettings(req, res);
 });
 
-server.post('/ui/settings', cors(corsOptions), (req, res) => {
+server.post('/ui/settings', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   saveSetting(req, res);
 });
 
 
-server.post('/ui/addUser', cors(corsOptions), (req, res) => {
+server.post('/ui/addUser', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   addUser(req, res);
 });
 
-server.post('/ui/removeUser', cors(corsOptions), (req, res) => {
+server.post('/ui/removeUser', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   removeUser(req, res);
 });
 
-server.get('/ui/getUsers', cors(corsOptions), (req, res) => {
+server.get('/ui/getUsers', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   getUsers(req, res);
 });
 
-server.get('/ui/networks', cors(corsOptions), (req, res) => {
+server.get('/ui/networks', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   getAllNetworkUI(req, res);
 });
 
-server.get('/ui/presenceMobiles', cors(corsOptions), (req, res) => {
+server.get('/ui/presenceMobiles', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   presenceMobilesUI(req, res);
 });
 
-server.post('/ui/assignMac', cors(corsOptions), (req, res) => {
+server.post('/ui/assignMac', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   assignMacToUser(req, res);
 });
 
-server.post('/ui/removeMacToUser', cors(corsOptions), (req, res) => {
+server.post('/ui/removeMacToUser', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   removeMacToUser(req, res);
 });
 server.listen(port, () => {
   console.info(`HTTP asus-guest-network listening on port ${port}`);
 });
-
-// smartthingsInit().then((res) => {
-//   console.info(`app initialized successfully ${res}`);
-//
-// }).catch((e) => {
-//   console.error(`Initialization error: ${e}`);
-//   console.error('Please first install DTH`s then smartapp,
-//   Do not forget to enable OAuth in SmartApp IDE settings!');
-//   console.error('and after that edit ./config/config.js,
-//   and setup smartapp.appId and smartapp.accessToken');
-//   console.info(`Current appId=${env.config.smartapp.appId}`);
-//   console.info(`Current accessToken=${env.config.smartapp.accessToken}`);
-// });

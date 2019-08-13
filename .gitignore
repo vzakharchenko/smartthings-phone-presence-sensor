@@ -26,6 +26,8 @@ hs_err_pid*
 node_moodules
 .idea
 config/userConfig.json
+config/keycloak.json
 package-lock.json
 userConfig.json
+keycloak.json
 
