@@ -50,8 +50,8 @@ jobs:
           name: send Keycloak.json
           command: scp  -P $SERVER_PORT -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" keycloak.json $SERVER_USERNAME@$SERVER_HOST:/opt/app/asus/config
       - run:
-          name: send backend node_modules
-          command:  scp -rp -P $SERVER_PORT -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" node_modules $SERVER_USERNAME@$SERVER_HOST:/opt/app/asus/
+          name: install backend
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && npm i'
       - run:
           name: send UI
           command:  scp -rp -P $SERVER_PORT -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" ./router-ui/public $SERVER_USERNAME@$SERVER_HOST:/opt/app/asus/router-ui
