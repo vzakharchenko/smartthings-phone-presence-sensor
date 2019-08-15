@@ -31,18 +31,37 @@ class AsusTab extends React.Component {
       this.props.componentStateStore.setAsusSetting('password', value || event.target.value);
     };
 
+    handleRouterTypeChange = (event) => {
+      const type = event.target.value;
+      this.props.componentStateStore.setAsusSetting('router', type);
+    };
+
     saveHandle = () => {
       this.props.componentStateStore.asusSave();
     };
 
     render() {
       const {
-        asusSetting, isSettingLoading,
+        asusSetting, isSettingLoading, asus, tpLink,
       } = this.props.componentStateStore;
       return (isSettingLoading ? <Loading /> : (
         <Table striped bordered condensed hover>
           <thead />
           <tbody>
+            <tr>
+              <ControlLabel>Router Type</ControlLabel>
+              <div>
+                <select
+                  id="router"
+                  name="router"
+                  onChange={this.handleRouterTypeChange}
+                >
+                  {!asus && !tpLink ? <option value="0" selected /> : null }
+                  { asus ? <option id="asus" value="asus" selected>Asus</option> : <option id="asus" value="asus">Asus</option> }
+                  { tpLink ? <option id="tplink" value="tplink" selected>TpLink</option> : <option id="tplink" value="tplink">TpLink</option> }
+                </select>
+              </div>
+            </tr>
             <tr>
               <ControlLabel>Asus Router IP</ControlLabel>
               <FormControl

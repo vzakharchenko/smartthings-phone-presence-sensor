@@ -26,7 +26,7 @@ class RouterTabs extends React.Component {
     render() {
       const { tabId } = this.props.tabsStore;
       const {
-        users, devices, serverConfig, smartapp, asus,
+        users, devices, serverConfig, smartapp,
       } = this.props.componentStateStore;
       return (
         <div>
@@ -37,21 +37,21 @@ class RouterTabs extends React.Component {
               </TabContent>
             </Tab>
             {serverConfig ? (
-              <Tab eventKey="ServerConfig" title="Server Config">
+              <Tab eventKey="ServerConfig" title="Server Settings">
                 <TabContent>
                   <ServerTab />
                 </TabContent>
               </Tab>
             ) : null}
-            {asus ? (
-              <Tab eventKey="Assus" title="Asus Router Config">
+            {serverConfig ? (
+              <Tab eventKey="Router Settings" title="Router Settings">
                 <TabContent>
                   <AsusTab />
                 </TabContent>
               </Tab>
             ) : null}
             {smartapp ? (
-              <Tab eventKey="SmartApp" title="SmartApp Config">
+              <Tab eventKey="SmartApp" title="SmartApp Settings">
                 <TabContent>
                   <SmartAppTab />
                 </TabContent>

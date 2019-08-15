@@ -10,11 +10,18 @@ class InfoTab extends React.Component {
   render() {
     const {
       asus,
+      tpLink,
       status,
       routerMessage,
       smartThingMessage,
       isLoading, routerError, smartThingError,
     } = this.props.componentStateStore;
+    let routerName = 'Unknown';
+    if (asus) {
+      routerName = 'Asus Router';
+    } else if (tpLink) {
+      routerName = 'TpLink Router';
+    }
     return (
       isLoading ? <Loading />
         : (
@@ -29,7 +36,7 @@ class InfoTab extends React.Component {
             <tbody>
               <tr key="router">
                 <td>
-                  {asus ? 'Asus Router' : 'Unknown'}
+                  {routerName}
                 </td>
                 <td>
                   {!routerError

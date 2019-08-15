@@ -13,6 +13,8 @@ export class ComponentStateStore {
 
     @observable asus = false;
 
+    @observable tpLink = false;
+
     @observable devices = false;
 
     @observable serverConfig = false;
@@ -44,7 +46,7 @@ export class ComponentStateStore {
     parseState(data) {
       const res = JSON.parse(data);
       this.users = res.data.includes('users');
-      this.macs = res.data.includes('users');
+      this.macs = res.data.includes('macs');
       this.networks = res.data.includes('networks');
       this.asus = res.data.includes('asus');
       this.error = res.data.includes('message');
@@ -53,6 +55,7 @@ export class ComponentStateStore {
       this.smartapp = res.data.includes('smartapp');
       this.routerError = res.data.includes('routerError');
       this.smartThingError = res.data.includes('smartThingError');
+      this.tpLink = res.data.includes('tpLink');
       this.status = res.status;
       this.routerMessage = res.routerMessage;
       this.smartThingMessage = res.smartThingMessage;
@@ -62,7 +65,7 @@ export class ComponentStateStore {
       const res = JSON.parse(data);
       this.serverSetting = res.data.server;
       this.smartappSetting = res.data.smartapp;
-      this.asusSetting = res.data.asus;
+      this.asusSetting = res.data.router;
     }
 
 
@@ -142,7 +145,7 @@ export class ComponentStateStore {
       sendData(`${serverUrl}ui/settings`,
         'POST',
         JSON.stringify({
-          asus: this.asusSetting,
+          router: this.asusSetting,
         }), {
           'Content-Type': 'application/json',
         }).then(action(({ data }) => {

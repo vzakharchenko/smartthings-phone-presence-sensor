@@ -8,12 +8,15 @@
     "accessToken": "",
     "smartThingsUrl": "https://graph-eu01-euwest1.api.smartthings.com"
   },
-  "asus": {
+  "router": {
     "routerIp": "",
     "routerPort": 80,
     "httpOrhttps": "http",
     "userName": "",
     "password": "",
+    "router": "asus"
+  },
+  "asus": {
     "guestWifi": {
       "guestWifiDefaultTemplate": {
         "bss_enabled": "1",
@@ -35,5 +38,6 @@
       }
     }
   },
-  "smartthings": {}
+  "smartthings": {
+  }
 }
