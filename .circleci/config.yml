@@ -17,6 +17,12 @@ jobs:
 #          name: fix host authenticity for production server
 #          command: ssh-keyscan -p $SERVER_PORT $SERVER_HOST >> ~/.ssh/known_hosts
       - run:
+          name: create Keycloak.json
+          command: echo $KEYCLOAK_JSON > keycloak.json
+      - run:
+          name: create branch name
+          command: echo $CIRCLE_BRANCH > branch
+      - run:
           name: backend install
           command: npm i
       - run:
@@ -32,20 +38,14 @@ jobs:
           name:  ui build
           command: cd router-ui && npm run build:prod
       - run:
-          name: clone master
+          name: (HOME 1) clone master
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'rm -rf /opt/app/asus && cd  /opt/app && git clone https://github.com/vzakharchenko/smartthings_asus_router asus'
       - run:
-          name: create branch name
-          command: echo $CIRCLE_BRANCH > branch
-      - run:
-          name: send branch name
+          name: (HOME 1) send branch name
           command:  scp -P $SERVER_PORT -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" branch $SERVER_USERNAME@$SERVER_HOST:/opt/app/asus/
       - run:
-          name: checkout branch
+          name: (HOME 1) checkout branch
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd /opt/app/asus && git checkout `cat branch`'
-      - run:
-          name: create Keycloak.json
-          command: echo $KEYCLOAK_JSON > keycloak.json
       - run:
           name: (HOME 1) send Keycloak.json
           command: scp  -P $SERVER_PORT -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" keycloak.json $SERVER_USERNAME@$SERVER_HOST:/opt/app/asus/config
@@ -61,6 +61,15 @@ jobs:
       - run:
           name: (HOME 1) start service
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && pm2 start AsusSmartAppServer.js  && pm2 save'
+      - run:
+          name: (HOME 2) clone master
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME2@$SERVER_HOST2 -p $SERVER_PORT2  'rm -rf /opt/app/asus && cd  /opt/app && git clone https://github.com/vzakharchenko/smartthings_asus_router asus'
+      - run:
+          name: (HOME 2) send branch name
+          command:  scp -P $SERVER_PORT2 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" branch $SERVER_USERNAME2@$SERVER_HOST2:/opt/app/asus/
+      - run:
+          name: (HOME 2) checkout branch
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME2@$SERVER_HOST2 -p $SERVER_PORT2  'cd /opt/app/asus && git checkout `cat branch`'
       - run:
           name: (HOME 2) send Keycloak.json
           command: scp  -P $SERVER_PORT2 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" keycloak.json $SERVER_USERNAME2@$SERVER_HOST2:/opt/app/asus/config
