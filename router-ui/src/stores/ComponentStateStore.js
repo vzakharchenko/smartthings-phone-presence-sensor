@@ -41,6 +41,8 @@ export class ComponentStateStore {
 
     @observable smartThingError = false;
 
+    @observable components = [];
+
     @observable status = null;
 
     parseState(data) {
@@ -56,6 +58,7 @@ export class ComponentStateStore {
       this.routerError = res.data.includes('routerError');
       this.smartThingError = res.data.includes('smartThingError');
       this.tpLink = res.data.includes('tpLink');
+      this.components = res.data;
       this.status = res.status;
       this.routerMessage = res.routerMessage;
       this.smartThingMessage = res.smartThingMessage;

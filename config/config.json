@@ -4,9 +4,7 @@
     "debug": true
   },
   "smartapp": {
-    "appId": "",
-    "accessToken": "",
-    "smartThingsUrl": "https://graph-eu01-euwest1.api.smartthings.com"
+    "smartThingsUrl": "https://account.smartthings.com"
   },
   "router": {
     "routerIp": "",

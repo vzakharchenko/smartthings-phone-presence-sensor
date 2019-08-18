@@ -31,9 +31,11 @@ class DevicesTab extends React.Component {
       if (users) {
         users.forEach((user) => {
           userList.push(user.username);
-          user.macs.forEach((mac) => {
-            macUserList[mac] = user;
-          });
+          if (user.macs) {
+            user.macs.forEach((mac) => {
+              macUserList[mac] = user;
+            });
+          }
         });
       }
 

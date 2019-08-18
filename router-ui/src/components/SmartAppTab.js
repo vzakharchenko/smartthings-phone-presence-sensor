@@ -20,14 +20,6 @@ class SmartAppTab extends React.Component {
         value || event.target.value);
     };
 
-    handleAppIdChange = (event, value) => {
-      this.props.componentStateStore.setSmartAppData('appId', value || event.target.value);
-    };
-
-    handleAccessTokenChange = (event, value) => {
-      this.props.componentStateStore.setSmartAppData('accessToken', value || event.target.value);
-    };
-
     saveHandle = () => {
       this.props.componentStateStore.smartAppSave();
     };
@@ -48,26 +40,6 @@ class SmartAppTab extends React.Component {
                 placeholder="smartThingsUrl"
                 value={smartappSetting ? smartappSetting.smartThingsUrl : ''}
                 onChange={this.handleUrlChange}
-              />
-            </tr>
-            <tr>
-              <ControlLabel>SmartApp Application Id</ControlLabel>
-              <FormControl
-                type="text"
-                name="appId"
-                placeholder="appId"
-                value={smartappSetting ? smartappSetting.appId : ''}
-                onChange={this.handleAppIdChange}
-              />
-            </tr>
-            <tr>
-              <ControlLabel>SmartApp Access Token</ControlLabel>
-              <FormControl
-                type="text"
-                name="accessToken"
-                placeholder="accessToken"
-                value={smartappSetting ? smartappSetting.accessToken : ''}
-                onChange={this.handleAccessTokenChange}
               />
             </tr>
             <tr>

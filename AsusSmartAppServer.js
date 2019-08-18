@@ -4,19 +4,17 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const env = require('./lib/env.js');
 const {
-  addUser,
   getUsers,
   assignMacToUser,
   removeMacToUser,
   removeUser,
 } = require('./lib/userManager');
 const { getListComponents } = require('./lib/componentManager');
-// const { smartthingsInit } = require('./lib/smartthingsConnection');
 const {
   createNetwork, deleteNetwork, getAllNetwork, getAllNetworkUI,
 } = require('./lib/modifyNetwork');
 const {
-  presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
+  presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI, saveSmartThingDeviceInfo,
 } = require('./lib/presenceMobile');
 
 const {
@@ -44,8 +42,7 @@ server.use(cors(corsOptions));
 
 connectKeycloak(server);
 
-const { port } = env.config.server;
-const { appId } = env.config.smartapp;
+const { port } = env.config().server;
 
 
 server.get('/health', cors(corsOptions), (req, res) => {
@@ -53,12 +50,12 @@ server.get('/health', cors(corsOptions), (req, res) => {
   res.send(JSON.stringify(status));
 });
 
-server.get(`/${appId}/createGuestNetwork`, cors(corsOptions), (req, res) => {
+server.get('/createGuestNetwork', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   createNetwork(req, res);
 });
 
-server.get(`/${appId}/deleteGuestNetwork`, cors(corsOptions), (req, res) => {
+server.get('/deleteGuestNetwork', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   deleteNetwork(req, res);
 });
@@ -78,14 +75,19 @@ server.get('/presenceMobiles', cors(corsOptions), (req, res) => {
   presenceMobiles(req, res);
 });
 
-server.get(`/${appId}/blockMac'`, cors(corsOptions), (req, res) => {
+server.get('/blockMac', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockUserMac(req, res);
 });
 
-server.get(`/${appId}/BlockedMacs`, cors(corsOptions), (req, res) => {
+server.get('/BlockedMacs', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockedUserMac(req, res);
+});
+
+server.post('/registerDevice', cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  saveSmartThingDeviceInfo(req, res);
 });
 
 // BACKEND UI SERVICES
@@ -105,12 +107,6 @@ server.get('/ui/settings', protect(), cors(corsOptions), (req, res) => {
 server.post('/ui/settings', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   saveSetting(req, res);
-});
-
-
-server.post('/ui/addUser', protect(), cors(corsOptions), (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  addUser(req, res);
 });
 
 server.post('/ui/removeUser', protect(), cors(corsOptions), (req, res) => {

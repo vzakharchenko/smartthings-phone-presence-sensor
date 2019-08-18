@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Button, FormControl, Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import Loading from './Loading';
 
 export default
@@ -77,26 +77,6 @@ class UsersTab extends React.Component {
                         )
                       );
                     })}
-
-              <tr>
-                <td>
-                  <FormControl
-                    type="text"
-                    name="newUserName"
-                    placeholder="newUserName"
-                    onChange={this.handleChangeState}
-                  />
-                </td>
-                <td />
-                <td>
-                  <Button
-                    bsStyle="primary"
-                    onClick={() => this.addUserHandle()}
-                  >
-                        add User
-                  </Button>
-                </td>
-              </tr>
             </tbody>
           </Table>
         )
