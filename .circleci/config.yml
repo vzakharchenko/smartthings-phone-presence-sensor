@@ -47,18 +47,33 @@ jobs:
           name: create Keycloak.json
           command: echo $KEYCLOAK_JSON > keycloak.json
       - run:
-          name: send Keycloak.json
+          name: [HOME 1] send Keycloak.json
           command: scp  -P $SERVER_PORT -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" keycloak.json $SERVER_USERNAME@$SERVER_HOST:/opt/app/asus/config
       - run:
-          name: install backend
+          name: [HOME 1] install backend
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && npm i'
       - run:
-          name: send UI
+          name: [HOME 1] send UI
           command:  scp -rp -P $SERVER_PORT -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" ./router-ui/public $SERVER_USERNAME@$SERVER_HOST:/opt/app/asus/router-ui
       - run:
-          name: stop service
+          name: [HOME 1] stop service
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && pm2 stop AsusSmartAppServer.js && pm2 delete AsusSmartAppServer.js'
       - run:
-          name: start service
+          name: [HOME 1] start service
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'cd  /opt/app/asus && pm2 start AsusSmartAppServer.js  && pm2 save'
+      - run:
+          name: [HOME 2] send Keycloak.json
+          command: scp  -P $SERVER_PORT2 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" keycloak.json $SERVER_USERNAME2@$SERVER_HOST2:/opt/app/asus/config
+      - run:
+          name: [HOME 2] install backend
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME2@$SERVER_HOST2 -p $SERVER_PORT2  'cd  /opt/app/asus && npm i'
+      - run:
+          name: [HOME 2] send UI
+          command:  scp -rp -P $SERVER_PORT2 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" ./router-ui/public $SERVER_USERNAME2@$SERVER_HOST2:/opt/app/asus/router-ui
+      - run:
+          name: [HOME 2] stop service
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME2@$SERVER_HOST2 -p $SERVER_PORT2  'cd  /opt/app/asus && pm2 stop AsusSmartAppServer.js && pm2 delete AsusSmartAppServer.js'
+      - run:
+          name: [HOME 2] start service
+          command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME2@$SERVER_HOST2 -p $SERVER_PORT2  'cd  /opt/app/asus && pm2 start AsusSmartAppServer.js  && pm2 save'
 

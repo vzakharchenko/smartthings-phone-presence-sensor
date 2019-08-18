@@ -58,7 +58,7 @@ class RouterTabs extends React.Component {
               </Tab>
             ) : null}
             {users ? (
-              <Tab eventKey="Users" title="Users">
+              <Tab eventKey="Users" title="SmartThings Devices">
                 <TabContent>
                   <UsersTab />
                 </TabContent>
