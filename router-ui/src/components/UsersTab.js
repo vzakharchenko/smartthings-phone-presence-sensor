@@ -38,7 +38,7 @@ class UsersTab extends React.Component {
           <Table striped bordered condensed hover>
             <thead>
               <tr>
-                <th>username</th>
+                <th>SmartThing device</th>
                 <th>Mac</th>
                 <th>Delete</th>
               </tr>
@@ -46,11 +46,11 @@ class UsersTab extends React.Component {
             <tbody>
               {
                     users.map((user) => {
-                      const { username, macs } = user;
+                      const { username, macs, label } = user;
                       return (macs && macs.length > 0
                         ? macs.map(mac => (
                           <tr key={`${username}|${mac}`}>
-                            <td>{username}</td>
+                            <td>{label}</td>
                             <td key={username}>{mac}</td>
                             <td>
                               <Button
@@ -63,14 +63,14 @@ class UsersTab extends React.Component {
                           </tr>
                         )) : (
                           <tr key={username}>
-                            <td>{username}</td>
+                            <td>{label}</td>
                             <td />
                             <td>
                               <Button
                                 bsStyle="primary"
                                 onClick={() => this.deleteHandle(username)}
                               >
-                                        Delete User
+                                        Delete Device
                               </Button>
                             </td>
                           </tr>

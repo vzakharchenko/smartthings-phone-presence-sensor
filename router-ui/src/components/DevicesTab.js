@@ -30,7 +30,7 @@ class DevicesTab extends React.Component {
       const macUserList = {};
       if (users) {
         users.forEach((user) => {
-          userList.push(user.username);
+          userList.push(user);
           if (user.macs) {
             user.macs.forEach((mac) => {
               macUserList[mac] = user;
@@ -44,12 +44,12 @@ class DevicesTab extends React.Component {
           <Table striped bordered condensed hover>
             <thead>
               <tr>
-                <th>name</th>
-                <th>nickName</th>
-                <th>vendor</th>
-                <th>mac</th>
-                <th>status</th>
-                <th>user</th>
+                <th>Name</th>
+                <th>NickName</th>
+                <th>Vendor</th>
+                <th>Mac</th>
+                <th>Status</th>
+                <th>SmartThings Device</th>
               </tr>
             </thead>
             <tbody>
@@ -74,10 +74,23 @@ class DevicesTab extends React.Component {
                                 >
                                   {!userAssigned ? <option value="0" selected /> : null }
                                   {userList.map(
-                                    username => (
-                                      userAssigned && username === userAssigned.username
-                                        ? <option value={username} selected>{username}</option>
-                                        : <option value={username}>{username}</option>),
+                                    user => (
+                                      userAssigned && user.username === userAssigned.username
+                                        ? (
+                                          <option
+                                            value={user.username}
+                                            selected
+                                          >
+                                            {user.label}
+                                          </option>
+                                        )
+                                        : (
+                                          <option
+                                            value={user.username}
+                                          >
+                                            {user.label}
+                                          </option>
+                                        )),
                                   )}
                                 </select>
                               </td>

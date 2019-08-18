@@ -28,7 +28,7 @@ class InfoTab extends React.Component {
           <Table striped bordered condensed hover>
             <thead>
               <tr>
-                <th>service</th>
+                <th>Service</th>
                 <th>Status</th>
                 <th>Message</th>
               </tr>
