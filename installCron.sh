@@ -1,3 +1,3 @@
-cd cron
-./getAllNetworkCheck.sh
-./presenceCheck.sh
+#cd cron
+#./getAllNetworkCheck.sh
+#./presenceCheck.sh

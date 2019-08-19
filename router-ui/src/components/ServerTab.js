@@ -19,6 +19,10 @@ class ServerTab extends React.Component {
       this.props.componentStateStore.setSettingData('port', value || event.target.value);
     };
 
+    handleMobilePresenceJobChange = (event, value) => {
+      this.props.componentStateStore.setSettingData('mobilePresenceJob', value || event.target.value);
+    };
+
     handleDebugChange = (event) => {
       this.props.componentStateStore.setSettingData('debug', event.target.checked);
     };
@@ -66,6 +70,16 @@ class ServerTab extends React.Component {
                     />
                   )}
 
+              </td>
+              <td>
+                <ControlLabel>Mobile Presence CronJob</ControlLabel>
+                <FormControl
+                  type="text"
+                  name="mobilePresenceJob"
+                  placeholder="mobilePresenceJob"
+                  value={serverSetting ? serverSetting.mobilePresenceJob : ''}
+                  onChange={this.handleMobilePresenceJobChange}
+                />
               </td>
               <td>
                 <Button

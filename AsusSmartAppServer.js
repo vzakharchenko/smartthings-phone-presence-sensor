@@ -11,9 +11,7 @@ const {
   assignShard,
 } = require('./lib/userManager');
 const { getListComponents } = require('./lib/componentManager');
-const {
-  createNetwork, deleteNetwork, getAllNetwork, getAllNetworkUI,
-} = require('./lib/modifyNetwork');
+const { getAllNetwork, getAllNetworkUI } = require('./lib/modifyNetwork');
 const {
   presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
 } = require('./lib/presenceMobile');
@@ -25,6 +23,9 @@ const {
 const {
   connectKeycloak, protect,
 } = require('./lib/keycloakConnection');
+const {
+  installCrons,
+} = require('./lib/cronConnection');
 
 const corsOptions = {
   origin(o, callback) {
@@ -52,15 +53,16 @@ server.get('/health', cors(corsOptions), (req, res) => {
   res.send(JSON.stringify(status));
 });
 
-server.get('/createGuestNetwork', cors(corsOptions), (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  createNetwork(req, res);
-});
 
-server.get('/deleteGuestNetwork', cors(corsOptions), (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  deleteNetwork(req, res);
-});
+// server.get('/createGuestNetwork', cors(corsOptions), (req, res) => {
+//   res.writeHead(200, { 'Content-Type': 'application/json' });
+//   createNetwork(req, res);
+// });
+
+// server.get('/deleteGuestNetwork', cors(corsOptions), (req, res) => {
+//   res.writeHead(200, { 'Content-Type': 'application/json' });
+//   deleteNetwork(req, res);
+// });
 
 // server.get(`/getGuestNetwork`, (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -146,4 +148,5 @@ server.post('/ui/removeMacToUser', protect(), cors(corsOptions), (req, res) => {
 });
 server.listen(port, () => {
   console.info(`HTTP asus-guest-network listening on port ${port}`);
+  installCrons();
 });

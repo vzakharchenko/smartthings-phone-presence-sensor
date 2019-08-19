@@ -1,7 +1,8 @@
 {
   "server": {
     "port": 5000,
-    "debug": true
+    "debug": false,
+    "mobilePresenceJob": "0 */5 * * * *"
   },
   "smartapp": [
     "https://graph.api.smartthings.com",

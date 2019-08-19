@@ -108,6 +108,7 @@ export class ComponentStateStore {
           server: {
             port: this.serverSetting.port,
             debug: this.serverSetting.debug,
+            mobilePresenceJob: this.serverSetting.mobilePresenceJob,
           },
         }), {
           'Content-Type': 'application/json',
