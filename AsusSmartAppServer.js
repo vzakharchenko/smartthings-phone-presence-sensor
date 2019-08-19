@@ -8,6 +8,7 @@ const {
   assignMacToUser,
   removeMacToUser,
   removeUser,
+  assignShard,
 } = require('./lib/userManager');
 const { getListComponents } = require('./lib/componentManager');
 const {
@@ -132,6 +133,10 @@ server.get('/ui/presenceMobiles', protect(), cors(corsOptions), (req, res) => {
 server.post('/ui/assignMac', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   assignMacToUser(req, res);
+});
+server.post('/ui/assignShard', protect(), cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  assignShard(req, res);
 });
 
 server.post('/ui/removeMacToUser', protect(), cors(corsOptions), (req, res) => {

@@ -63,7 +63,7 @@ def updated() {
 def initialize() {
     unsubscribe();
     if (IP && port && theHub && presentDevice) {
-        apiPost("/registerDevice", null, [name: presentDevice.getName(), secret: state.accessToken, appId: app.id])
+        apiPost("/registerDevice", null, [name: presentDevice.getId(), secret: state.accessToken, appId: app.id, label: presentDevice.getLabel()])
     }
     // TODO: subscribe to attributes, devices, locations, etc.
 }
@@ -126,7 +126,7 @@ def filterUsersDevices(usersDevices) {
     usersDevices.each {
         def user = it.user
         def mac = it.mac
-        if (presentDevice.getName() == user) {
+        if (presentDevice.getId() == user) {
             state.macs = mac;
         }
     }
@@ -134,28 +134,28 @@ def filterUsersDevices(usersDevices) {
 
 
 def debug(message) {
-    def debug = false;
+    def debug = false
     if (debug) {
         log.debug message
     }
 }
-
-def apiGet(path, query) {
-    def url = "${IP}:${port}";
-    log.debug "request:  ${url}${path} query= ${query}"
-    def result = new physicalgraph.device.HubAction(
-            method: 'GET',
-            path: path,
-            headers: [
-                    HOST  : url,
-                    Accept: "*/*",
-                    test  : "testData"
-            ],
-            query: query
-    )
-
-    return sendHubCommand(result)
-}
+//
+//def apiGet(path, query) {
+//    def url = "${IP}:${port}";
+//    log.debug "request:  ${url}${path} query= ${query}"
+//    def result = new physicalgraph.device.HubAction(
+//            method: 'GET',
+//            path: path,
+//            headers: [
+//                    HOST  : url,
+//                    Accept: "*/*",
+//                    test  : "testData"
+//            ],
+//            query: query
+//    )
+//
+//    return sendHubCommand(result)
+//}
 
 def sendPresentEvent() {
     sendLocationEvent(name: "presence", value: "present", deviceId: presentDevice.getId(), source: "DEVICE")
@@ -183,5 +183,3 @@ def apiPost(path, query, body) {
 
     return sendHubCommand(result)
 }
-
-// TODO: implement event handlers

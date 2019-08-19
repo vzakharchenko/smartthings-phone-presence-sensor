@@ -45,6 +45,8 @@ export class ComponentStateStore {
 
     @observable status = null;
 
+    @observable smartappUrl = null;
+
     parseState(data) {
       const res = JSON.parse(data);
       this.users = res.data.includes('users');
@@ -125,11 +127,7 @@ export class ComponentStateStore {
       sendData(`${serverUrl}ui/settings`,
         'POST',
         JSON.stringify({
-          smartapp: {
-            smartThingsUrl: this.smartappSetting.smartThingsUrl,
-            appId: this.smartappSetting.appId,
-            accessToken: this.smartappSetting.accessToken,
-          },
+          smartapp: this.smartappSetting,
         }), {
           'Content-Type': 'application/json',
         }).then(action(({ data }) => {
@@ -141,6 +139,13 @@ export class ComponentStateStore {
       ).finally(action(() => {
         this.isSettingLoading = false;
       }));
+    }
+
+    @action addShard() {
+      if (this.smartappUrl) {
+        this.smartappSetting.push(this.smartappUrl);
+        action(this.smartAppSave());
+      }
     }
 
     @action asusSave() {
@@ -166,8 +171,8 @@ export class ComponentStateStore {
       this.serverSetting[elementName] = elementValue;
     }
 
-    @action setSmartAppData(elementName, elementValue) {
-      this.smartappSetting[elementName] = elementValue;
+    @action modifyShard(elementValue) {
+      this.smartappUrl = elementValue;
     }
 
     @action setAsusSetting(elementName, elementValue) {

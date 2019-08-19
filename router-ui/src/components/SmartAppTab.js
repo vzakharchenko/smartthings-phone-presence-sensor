@@ -15,10 +15,15 @@ class SmartAppTab extends React.Component {
     }
   }
 
-    handleUrlChange = (event, value) => {
-      this.props.componentStateStore.setSmartAppData('smartThingsUrl',
-        value || event.target.value);
-    };
+  addShard = () => {
+    this.props.componentStateStore.addShard();
+  };
+
+  handleUrlChange = (event, value) => {
+    this.props.componentStateStore.modifyShard(
+      value || event.target.value,
+    );
+  };
 
     saveHandle = () => {
       this.props.componentStateStore.smartAppSave();
@@ -28,27 +33,49 @@ class SmartAppTab extends React.Component {
       const {
         smartappSetting, isSettingLoading,
       } = this.props.componentStateStore;
-      return (isSettingLoading ? <Loading /> : (
+      return (isSettingLoading || !smartappSetting ? <Loading /> : (
         <Table striped bordered condensed hover>
-          <thead />
-          <tbody>
+          <thead>
             <tr>
-              <ControlLabel>SmartApp Url</ControlLabel>
-              <FormControl
-                type="text"
-                name="smartThingsUrl"
-                placeholder="smartThingsUrl"
-                value={smartappSetting ? smartappSetting.smartThingsUrl : ''}
-                onChange={this.handleUrlChange}
-              />
+              <th>Location Url</th>
+              <th>action</th>
             </tr>
-            <tr>
-              <Button
-                bsStyle="primary"
-                onClick={() => this.saveHandle()}
-              >
-                        Save
-              </Button>
+          </thead>
+          <tbody>
+            {
+              smartappSetting.map(shard => (
+                <tr key={shard}>
+                  <td>{shard}</td>
+                  <td />
+                  <td>
+                    <Button
+                      bsStyle="primary"
+                      onClick={() => this.deleteHandle(username)}
+                    >
+                                Delete Shard
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            <tr key="newShard">
+              <td>
+                <ControlLabel>SmartApp Url</ControlLabel>
+                <FormControl
+                  type="text"
+                  name="smartThingsUrl"
+                  placeholder="smartThingsUrl"
+                  onChange={this.handleUrlChange}
+                />
+              </td>
+              <td />
+              <td>
+                <Button
+                  bsStyle="primary"
+                  onClick={() => this.addShard()}
+                >
+                  Add Shard
+                </Button>
+              </td>
             </tr>
           </tbody>
         </Table>

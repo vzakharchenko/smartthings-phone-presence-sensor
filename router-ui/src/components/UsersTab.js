@@ -4,7 +4,7 @@ import { Button, Table } from 'react-bootstrap';
 import Loading from './Loading';
 
 export default
-@inject('usersStore')
+@inject('usersStore', 'componentStateStore')
 @observer
 class UsersTab extends React.Component {
   componentDidMount() {
@@ -29,28 +29,65 @@ class UsersTab extends React.Component {
       this.props.usersStore.setFormData(event.target.name, event.target.value);
     };
 
-    render() {
-      const {
-        isUsersLoading, users,
-      } = this.props.usersStore;
-      return (
-        isUsersLoading ? <Loading /> : (
-          <Table striped bordered condensed hover>
-            <thead>
-              <tr>
-                <th>SmartThing device</th>
-                <th>Mac</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
+  onChange = (option) => {
+    const shard = option.target.value;
+    const userId = option.target.id;
+    this.props.usersStore.assignShard(userId, shard);
+  };
+
+  render() {
+    const {
+      isUsersLoading, users,
+    } = this.props.usersStore;
+    const { smartappSetting } = this.props.componentStateStore;
+    return (
+      isUsersLoading ? <Loading /> : (
+        <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>SmartThing device</th>
+              <th>Shard</th>
+              <th>Mac</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
                     users.map((user) => {
-                      const { username, macs, label } = user;
+                      const {
+                        username, macs, label, shard,
+                      } = user;
                       return (macs && macs.length > 0
                         ? macs.map(mac => (
                           <tr key={`${username}|${mac}`}>
                             <td>{label}</td>
+                            <td>
+                              <select
+                                id={`${username}|shard`}
+                                name="shard"
+                                onChange={this.onChange}
+                              >
+                                {!shard ? <option value="0" selected /> : null }
+                                {smartappSetting.map(
+                                  smartappShard => (shard && smartappShard === shard
+                                    ? (
+                                      <option
+                                        value={shard}
+                                        selected
+                                      >
+                                        {shard}
+                                      </option>
+                                    )
+                                    : (
+                                      <option
+                                        value={shard}
+                                      >
+                                        {shard}
+                                      </option>
+                                    )),
+                                ) }
+                              </select>
+                            </td>
                             <td key={username}>{mac}</td>
                             <td>
                               <Button
@@ -64,6 +101,33 @@ class UsersTab extends React.Component {
                         )) : (
                           <tr key={username}>
                             <td>{label}</td>
+                            <td>
+                              <select
+                                id={`${username}`}
+                                name="shard"
+                                onChange={this.onChange}
+                              >
+                                {!shard ? <option value="0" selected /> : null }
+                                {smartappSetting.map(
+                                  smartappShard => (shard && smartappShard === shard
+                                    ? (
+                                      <option
+                                        value={smartappShard}
+                                        selected
+                                      >
+                                        {smartappShard}
+                                      </option>
+                                    )
+                                    : (
+                                      <option
+                                        value={smartappShard}
+                                      >
+                                        {smartappShard}
+                                      </option>
+                                    )),
+                                ) }
+                              </select>
+                            </td>
                             <td />
                             <td>
                               <Button
@@ -77,9 +141,9 @@ class UsersTab extends React.Component {
                         )
                       );
                     })}
-            </tbody>
-          </Table>
-        )
-      );
-    }
+          </tbody>
+        </Table>
+      )
+    );
+  }
 }
