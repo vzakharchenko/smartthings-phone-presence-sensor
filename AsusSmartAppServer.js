@@ -15,8 +15,9 @@ const {
   createNetwork, deleteNetwork, getAllNetwork, getAllNetworkUI,
 } = require('./lib/modifyNetwork');
 const {
-  presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI, saveSmartThingDeviceInfo,
+  presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
 } = require('./lib/presenceMobile');
+const { saveSmartThingDeviceInfo } = require('./lib/registerDevice');
 
 const {
   getSettings, saveSetting,
