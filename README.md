@@ -66,7 +66,7 @@ TpLink:
 1. Install server
 `curl -sSL https://raw.githubusercontent.com/vzakharchenko/smartthings_asus_router/master/install.sh | bash`
 2. open link http:/<YOUR_SERVER_IP>:5000
-3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
+3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/routerSetting.png?raw=true)
 4. select router type: asus or tplink
 5. type ip of router
 6. set login and password of router  web admin UI 
@@ -74,7 +74,8 @@ TpLink:
 8. [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
 9. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings_asus_router#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
 10.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings_asus_router#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
-11. now you can use Smartthings Device for automation)
+11. add more devices if necessary, for this repeat steps 7-10 to do this
+12. now you can use Smartthings Device for automation)
 
 
 ##Manual Server Installation Steps:
@@ -113,7 +114,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
  
 ## Router setting
 1. open link http:/<YOUR_SERVER_IP>:5000
-2. open router Setting tab ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
+2. open router Setting tab ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/routerSetting.png?raw=true)
 3. select router type: asus or tplink 
 4. type ip of router
 5. set login and password of router
