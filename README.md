@@ -70,7 +70,7 @@ TpLink:
 4. select router type: asus or tplink
 5. type ip of router
 6. set login and password of router  web admin UI 
-7. [install SmartThink app](https://github.com/vzakharchenko/smartthings_asus_router#install-smartthink-app "install SmartThink app")
+7. [install SmartApp Source](https://github.com/vzakharchenko/smartthings_asus_router#install-smartthink-app "install SmartApp Source")
 8. [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
 9. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings_asus_router#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
 10.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings_asus_router#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
@@ -119,7 +119,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
 4. type ip of router
 5. set login and password of router
 
-## install SmartThink app
+## install SmartApp Source
 1. open https://graph.api.smartthings.com/location/list with your samsung account
 2. select your location ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/Location.png?raw=true)
 3. add new smartapp ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addNewSmartApp.png?raw=true)
