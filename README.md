@@ -2,7 +2,7 @@
 ## Description
     With this project you can use your router as a presence detector
     
-  **Supported new SmartThings and SmartThing Classic applications**
+  **Supported  SmartThings and SmartThing Classic applications**
 ## Supported device list:
 Asus:
 
@@ -66,14 +66,15 @@ TpLink:
 1. Install server
 `curl -sSL https://raw.githubusercontent.com/vzakharchenko/smartthings_asus_router/master/install.sh | bash`
 2. open link http:/<YOUR_SERVER_IP>:5000
-3. open router Setting tab
+3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
 4. select router type: asus or tplink
 5. type ip of router
-6. set login and password of router  web admin UI
-7. install SmartThink app
-8. Add a new SmartApp to SmartThings Classic
-9.  Assign Phone Mac address to  SmartThing Device
-10. now you can use Smartthings Device for automation)
+6. set login and password of router  web admin UI 
+7. [install SmartThink app](https://github.com/vzakharchenko/smartthings_asus_router#install-smartthink-app "install SmartThink app")
+8. [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
+9. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings_asus_router#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
+10.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings_asus_router#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
+11. now you can use Smartthings Device for automation)
 
 
 ##Manual Server Installation Steps:
@@ -112,45 +113,45 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
  
 ## Router setting
 1. open link http:/<YOUR_SERVER_IP>:5000
-2. open router Setting tab <routerSetting.png>
+2. open router Setting tab ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
 3. select router type: asus or tplink 
 4. type ip of router
 5. set login and password of router
 
 ## install SmartThink app
 1. open https://graph.api.smartthings.com/location/list with your samsung account
-2. select your location <location.png>
-3. add new smartapp <addNewSmartApp.png>
-4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/smartthings_asus_router/master/smartapps/WiFi%20Mobile%20Presence.groovy <createNewSmartApp.png>
-5. open App-Setting  <selectAppSetting.png>
-6. enable oauth in smartapp <enableOAuth.png>
-7.  save and publish <saveAndPublish.png>
+2. select your location ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/Location.png?raw=true)
+3. add new smartapp ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addNewSmartApp.png?raw=true)
+4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/smartthings_asus_router/master/smartapps/WiFi%20Mobile%20Presence.groovy ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/createNewSmartApp.png?raw=true)
+5. open App-Setting[https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/selectAppSetting.png?raw=true](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/selectAppSetting.png?raw=true)
+6. enable oauth in smartapp![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/enableOAuth.png?raw=true)
+7.  save and publish![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/saveAndPublish.png?raw=true)
 
 ## Add new device
 1. open https://graph.api.smartthings.com/location/list with your samsung account
-2. select your location <location.png>
-3. goto "My Devices" -> "+ New Device" <addNewDevice.png>
-4. fill all required fields, **Type: "Simulated Presence Sensor" **<createPresenteSensor.png>
+2. select your location ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/Location.png?raw=true)
+3. goto "My Devices" -> "+ New Device"![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addNewDevice.png?raw=true)
+4. fill all required fields, **Type: "Simulated Presence Sensor" **![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/createPresenteSensor.png?raw=true)
 
 ## Add a new SmartApp to SmartThings Classic
-1. install SmartThink app
-2.  Add new device 
+1. [install SmartThink app](https://github.com/vzakharchenko/smartthings_asus_router#install-smartthink-app "install SmartThink app")
+2.  [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
 3. install SmartThings Classic
-4. open "Automation" Tab->"SmartApps" -> "add SmartApp" <addSmartApp.png>
-5. select "My app" category <MyApps.png>
-6. add "WiFi Mobile Manager <addWifiMobilePresence.png>
-7. set Server IP, port, hub and Simulated Presence Sensor <settingSmartApp.png> and click save
+4. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addSmartApp.png?raw=true)
+5. select "My app" category ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/MyApps.png?raw=true)
+6. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addWifiMobilePresence.png?raw=true)
+7. set Server IP, port, hub and Simulated Presence Sensor and click save ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
 
 ## Assign Phone Mac address to  SmartThing Device
 1. Add a new SmartApp to SmartThings Classic
 2. open link http:/<YOUR_SERVER_IP>:5000
 3. goto Device Tab
-4. assign network device to Smartthings Device <assignMac.png>
+4. assign network device to Smartthings Device![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/assignMac.png?raw=true)
 
 ## Remove Mac address from  SmartThings Device
 1. open link http:/<YOUR_SERVER_IP>:5000
 2. goto "SmartThing Devices" Tab
-3. click "unAssign" <unAssign.png>
+3. click "unAssign" ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/unAssign.png?raw=true)
 
 
 
