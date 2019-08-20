@@ -134,19 +134,16 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
 4. fill all required fields, **Type: "Simulated Presence Sensor" **![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/createPresenteSensor.png?raw=true)
 
 ## Add a new SmartApp to SmartThings Classic
-1. [install SmartThink app](https://github.com/vzakharchenko/smartthings_asus_router#install-smartthink-app "install SmartThink app")
-2.  [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
-3. install SmartThings Classic
-4. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addSmartApp.png?raw=true)
-5. select "My app" category ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/MyApps.png?raw=true)
-6. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addWifiMobilePresence.png?raw=true)
-7. set Server IP, port, hub and Simulated Presence Sensor and click save ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
+1. install SmartThings Classic
+2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addSmartApp.png?raw=true)
+3. select "My app" category ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/MyApps.png?raw=true)
+4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addWifiMobilePresence.png?raw=true)
+5. set Server IP, port, hub and Simulated Presence Sensor and click save ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
 
 ## Assign Phone Mac address to  SmartThing Device
-1. Add a new SmartApp to SmartThings Classic
-2. open link http:/<YOUR_SERVER_IP>:5000
-3. goto Device Tab
-4. assign network device to Smartthings Device![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/assignMac.png?raw=true)
+1. open link http:/<YOUR_SERVER_IP>:5000
+2. goto Device Tab
+3. assign network device to Smartthings Device![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/assignMac.png?raw=true)
 
 ## Remove Mac address from  SmartThings Device
 1. open link http:/<YOUR_SERVER_IP>:5000
