@@ -70,7 +70,7 @@ TpLink:
 4. select router type: asus or tplink
 5. type ip of router
 6. set login and password of router  web admin UI 
-7. [install SmartApp Source](https://github.com/vzakharchenko/smartthings_asus_router#install-smartthink-app "install SmartApp Source")
+7. [install SmartApp Source](https://github.com/vzakharchenko/smartthings_asus_router#install-smartapp-source "install SmartApp Source")
 8. [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
 9. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings_asus_router#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
 10.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings_asus_router#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
