@@ -1,5 +1,5 @@
 /**
- *  WiFi Mobile Presence
+ *  WiFi Mobile Presente
  *
  *  Copyright 2019 Василий Захарченко
  *
@@ -29,7 +29,7 @@ preferences {
 }
 
 def config() {
-    dynamicPage(name: "config", title: " WiFi Mobile Manager", install: true, uninstall: true) {
+    dynamicPage(name: "config", title: "WiFi Mobile Manager", install: true, uninstall: true) {
 
 
         section("Setup my device with this IP") {
@@ -134,12 +134,12 @@ def filterUsersDevices(usersDevices) {
 
 
 def debug(message) {
-    def debug = false
+    def debug = false;
     if (debug) {
         log.debug message
     }
 }
-//
+
 //def apiGet(path, query) {
 //    def url = "${IP}:${port}";
 //    log.debug "request:  ${url}${path} query= ${query}"
@@ -158,12 +158,35 @@ def debug(message) {
 //}
 
 def sendPresentEvent() {
-    sendLocationEvent(name: "presence", value: "present", deviceId: presentDevice.getId(), source: "DEVICE")
+    if (presentDevice.hasCommand("arrived")){
+        presentDevice.arrived();
+    } else
+    if (getLastState() != "present") {
+        debug("current state=${getLastState()}, new state present");
+        sendLocationEvent(name: "presence", value: "present", deviceId: presentDevice.getId(), source: "DEVICE", isStateChange: true)
+        presentDevice.arrived();
+    }
 }
 
 
 def sendNoPresentEvent() {
-    sendLocationEvent(name: "presence", value: "not present", deviceId: presentDevice.getId(), source: "DEVICE")
+    if (presentDevice.hasCommand("departed")){
+        presentDevice.departed();
+    } else
+    if (getLastState() != "not present") {
+        debug("current state=${getLastState()}, new state not present");
+        sendLocationEvent(name: "presence", value: "not present", deviceId: presentDevice.getId(), source: "DEVICE", isStateChange: true)
+    }
+}
+
+def getLastState() {
+    def events = presentDevice.events(max: 1);
+    if (events && events.size() == 1) {
+        def event = events.get(0);
+        return event.value;
+    } else {
+        return null;
+    }
 }
 
 def apiPost(path, query, body) {
@@ -183,3 +206,5 @@ def apiPost(path, query, body) {
 
     return sendHubCommand(result)
 }
+
+// TODO: implement event handlers
