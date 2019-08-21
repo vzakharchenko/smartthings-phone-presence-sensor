@@ -16,6 +16,7 @@ const {
   presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
 } = require('./lib/presenceMobile');
 const { saveSmartThingDeviceInfo } = require('./lib/registerDevice');
+const { ssdpServer, description } = require('./lib/ssdpConnection');
 
 const {
   getSettings, saveSetting,
@@ -37,6 +38,8 @@ const corsOptions = {
   maxAge: 3600,
 };
 
+const { port } = env.config().server;
+
 const server = express();
 
 server.use(bodyParser.json());
@@ -44,8 +47,6 @@ server.use(bodyParser.json());
 server.use(cors(corsOptions));
 
 connectKeycloak(server);
-
-const { port } = env.config().server;
 
 
 server.get('/health', cors(corsOptions), (req, res) => {
@@ -141,6 +142,10 @@ server.post('/ui/assignShard', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   assignShard(req, res);
 });
+// SSDP
+server.get('/description.xml', protect(), cors(corsOptions), (req, res) => {
+  description(res);
+});
 
 server.post('/ui/removeMacToUser', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -149,4 +154,12 @@ server.post('/ui/removeMacToUser', protect(), cors(corsOptions), (req, res) => {
 server.listen(port, () => {
   console.info(`HTTP asus-guest-network listening on port ${port}`);
   installCrons();
+});
+
+// start the server
+ssdpServer.start();
+
+process.on('exit', () => {
+  server.stop();
+  ssdpServer.stop();
 });
