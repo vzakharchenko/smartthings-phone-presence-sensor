@@ -56,7 +56,7 @@ def config() {
             input "port", "number", multiple: false, required: true, defaultValue: state.port
         }
         section("on this hub...") {
-            input "theHub", "hub", multiple: false, required: true, defaultValue: state.hub
+            input "theHub", "hub", multiple: false, required: false, defaultValue: state.hub
         }
         section("Presente Device") {
             input "presentDevice", "device.simulatedPresenceSensor", multiple: false, required: true
