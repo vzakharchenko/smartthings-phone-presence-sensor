@@ -42,7 +42,7 @@ class AsusTab extends React.Component {
 
     render() {
       const {
-        asusSetting, isSettingLoading, asus, tpLink,
+        asusSetting, isSettingLoading, asus, tpLink, mikrotik,
       } = this.props.componentStateStore;
       return (isSettingLoading ? <Loading /> : (
         <Table striped bordered condensed hover>
@@ -56,9 +56,10 @@ class AsusTab extends React.Component {
                   name="router"
                   onChange={this.handleRouterTypeChange}
                 >
-                  {!asus && !tpLink ? <option value="0" selected /> : null }
+                  {!asus && !tpLink && !mikrotik ? <option value="0" selected /> : null }
                   { asus ? <option id="asus" value="asus" selected>Asus</option> : <option id="asus" value="asus">Asus</option> }
                   { tpLink ? <option id="tplink" value="tplink" selected>TpLink</option> : <option id="tplink" value="tplink">TpLink</option> }
+                  { mikrotik ? <option id="mikrotik" value="mikrotik" selected>Mikrotik</option> : <option id="mikrotik" value="mikrotik">Mikrotik</option> }
                 </select>
               </div>
             </tr>

@@ -11,6 +11,7 @@ class InfoTab extends React.Component {
     const {
       asus,
       tpLink,
+      mikrotik,
       status,
       routerMessage,
       smartThingMessage,
@@ -21,6 +22,8 @@ class InfoTab extends React.Component {
       routerName = 'Asus Router';
     } else if (tpLink) {
       routerName = 'TpLink Router';
+    } else if (mikrotik) {
+      routerName = 'Mikrotik Router';
     }
     return (
       isLoading ? <Loading />

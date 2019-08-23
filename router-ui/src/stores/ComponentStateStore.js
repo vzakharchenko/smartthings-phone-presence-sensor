@@ -15,6 +15,8 @@ export class ComponentStateStore {
 
     @observable tpLink = false;
 
+    @observable mikrotik = false;
+
     @observable devices = false;
 
     @observable serverConfig = false;
@@ -60,6 +62,7 @@ export class ComponentStateStore {
       this.routerError = res.data.includes('routerError');
       this.smartThingError = res.data.includes('smartThingError');
       this.tpLink = res.data.includes('tpLink');
+      this.mikrotik = res.data.includes('mikrotik');
       this.components = res.data;
       this.status = res.status;
       this.routerMessage = res.routerMessage;

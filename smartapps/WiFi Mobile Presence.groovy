@@ -25,7 +25,7 @@ definition(
 
 
 preferences {
-    page(name: "config", content: "config", refreshTimeout: 5)
+    page(name: "config", content: "config", refreshTimeout: 5, install: true, uninstall: true)
 }
 
 def config() {
