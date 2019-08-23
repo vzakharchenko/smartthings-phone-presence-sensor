@@ -36,7 +36,7 @@ jobs:
           command: cd router-ui && npm run lint
       - run:
           name:  ui build
-          command: cd router-ui && npm run build
+          command: cd router-ui && npm run build:dev
       - run:
           name: (HOME 1) clone master
           command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $SERVER_USERNAME@$SERVER_HOST -p $SERVER_PORT  'rm -rf /opt/app/asus && cd  /opt/app && git clone https://github.com/vzakharchenko/smartthings_asus_router asus'
