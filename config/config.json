@@ -13,7 +13,7 @@
   ],
   "router": {
     "routerIp": "",
-    "routerPort": 80,
+    "routerPort": "",
     "httpOrhttps": "http",
     "userName": "",
     "password": "",
