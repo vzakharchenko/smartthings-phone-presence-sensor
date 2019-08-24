@@ -1,7 +1,6 @@
 # smartthings router connection
 ## Description
     With this project you can use your router as a presence detector
-    
   **Supported  SmartThings and SmartThing Classic applications**
 ## Supported device list:
 Asus:
@@ -61,21 +60,25 @@ Asus:
 TpLink:
 
     tested on TP-LINK Touch P5
+Mikrotik:
+
+    tested on RB962UiGS-5HacT2HnT-US/RB962UiGS-5HacT2HnT
 
 ## Installation Steps:
 1. Install server
 `curl -sSL https://raw.githubusercontent.com/vzakharchenko/smartthings_asus_router/master/install.sh | bash`
 2. open link http:/<YOUR_SERVER_IP>:5000
 3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/routerSetting.png?raw=true)
-4. select router type: asus or tplink
-5. type ip of router
-6. set login and password of router  web admin UI 
-7. [install SmartApp Source](https://github.com/vzakharchenko/smartthings_asus_router#install-smartapp-source "install SmartApp Source")
-8. [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
-9. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings_asus_router#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
-10.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings_asus_router#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
-11. add more devices if necessary, for this repeat steps 7-10 to do this
-12. now you can use Smartthings Device for automation)
+4. select router type: asus or tplink or mikrotik
+5. set ip(hostname) of router  web admin UI 
+6. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
+7. set login and password of router  web admin UI 
+8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings_asus_router#install-smartapp-source "install SmartApp Source")
+9. [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
+10. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings_asus_router#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
+11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings_asus_router#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
+12. add more devices if necessary, for this repeat steps 7-10 to do this
+13. now you can use Smartthings Device for automation)
 
 
 ##Manual Server Installation Steps:
@@ -115,9 +118,10 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
 ## Router setting
 1. open link http:/<YOUR_SERVER_IP>:5000
 2. open router Setting tab ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/routerSetting.png?raw=true)
-3. select router type: asus or tplink 
-4. type ip of router
-5. set login and password of router
+3. select router type: asus or tplink or mikrotik
+4. set ip(hostname) of router  web admin UI 
+5. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
+6. set login and password of router
 
 ## install SmartApp Source
 1. open https://graph.api.smartthings.com/location/list with your samsung account
