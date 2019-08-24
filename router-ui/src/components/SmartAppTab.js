@@ -47,14 +47,7 @@ class SmartAppTab extends React.Component {
                 <tr key={shard}>
                   <td>{shard}</td>
                   <td />
-                  <td>
-                    <Button
-                      bsStyle="primary"
-                      onClick={() => this.deleteHandle(username)}
-                    >
-                                Delete Shard
-                    </Button>
-                  </td>
+                  <td />
                 </tr>
               ))}
             <tr key="newShard">

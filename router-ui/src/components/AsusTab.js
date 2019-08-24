@@ -50,11 +50,12 @@ class AsusTab extends React.Component {
           <tbody>
             <tr>
               <ControlLabel>Router Type</ControlLabel>
-              <div>
+              <div style={{ width: 'auto' }}>
                 <select
                   id="router"
                   name="router"
                   onChange={this.handleRouterTypeChange}
+                  style={{ width: '300px' }}
                 >
                   {!asus && !tpLink && !mikrotik ? <option value="0" selected /> : null }
                   { asus ? <option id="asus" value="asus" selected>Asus</option> : <option id="asus" value="asus">Asus</option> }
