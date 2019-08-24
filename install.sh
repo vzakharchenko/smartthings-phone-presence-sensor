@@ -1,4 +1,4 @@
-et -e
+set -e
 currentUser=`whoami`
 echo ${currentUser}
 sudo apt-get update
