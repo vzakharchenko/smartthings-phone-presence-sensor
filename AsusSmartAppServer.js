@@ -15,6 +15,7 @@ const { getAllNetwork, getAllNetworkUI } = require('./lib/modifyNetwork');
 const {
   presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
 } = require('./lib/presenceMobile');
+const logger = require('./lib/logger');
 const { saveSmartThingDeviceInfo } = require('./lib/registerDevice');
 const { ssdpServer, description } = require('./lib/ssdpConnection');
 
@@ -152,7 +153,7 @@ server.post('/ui/removeMacToUser', protect(), cors(corsOptions), (req, res) => {
   removeMacToUser(req, res);
 });
 server.listen(port, () => {
-  console.info(`HTTP asus-guest-network listening on port ${port}`);
+  logger.info(`HTTP asus-guest-network listening on port ${port}`);
   installCrons();
 });
 
