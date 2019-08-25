@@ -13,7 +13,10 @@ const {
 const { getListComponents } = require('./lib/componentManager');
 const { getAllNetwork, getAllNetworkUI } = require('./lib/modifyNetwork');
 const {
-  presenceMobiles, blockUserMac, blockedUserMac, presenceMobilesUI,
+  presenceMobiles,
+  blockUserMac,
+  unBlockUserMac,
+  presenceMobilesUI,
 } = require('./lib/presenceMobile');
 const logger = require('./lib/logger');
 const { saveSmartThingDeviceInfo } = require('./lib/registerDevice');
@@ -81,15 +84,20 @@ server.get('/presenceMobiles', cors(corsOptions), (req, res) => {
   presenceMobiles(req, res);
 });
 
-server.get('/blockMac', cors(corsOptions), (req, res) => {
+server.post('/blockMac', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   blockUserMac(req, res);
 });
 
-server.get('/BlockedMacs', cors(corsOptions), (req, res) => {
+server.post('/unBlockMac', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  blockedUserMac(req, res);
+  unBlockUserMac(req, res);
 });
+
+// server.get('/BlockedMacs', cors(corsOptions), (req, res) => {
+//   res.writeHead(200, { 'Content-Type': 'application/json' });
+//   blockedUserMac(req, res);
+// });
 
 server.post('/registerDevice', cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -139,6 +147,17 @@ server.post('/ui/assignMac', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   assignMacToUser(req, res);
 });
+
+server.post('/ui/blockMac', protect(), cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  blockUserMac(req, res);
+});
+
+server.post('/ui/unBlockMac', protect(), cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  unBlockUserMac(req, res);
+});
+
 server.post('/ui/assignShard', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   assignShard(req, res);

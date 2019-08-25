@@ -4,7 +4,7 @@ import { Button, Table } from 'react-bootstrap';
 import Loading from './Loading';
 
 export default
-@inject('usersStore', 'componentStateStore')
+@inject('usersStore', 'componentStateStore', 'devicesStore')
 @observer
 class UsersTab extends React.Component {
   componentDidMount() {
@@ -29,6 +29,14 @@ class UsersTab extends React.Component {
       this.props.usersStore.setFormData(event.target.name, event.target.value);
     };
 
+  blockAccess = (event) => {
+    this.props.devicesStore.blockAccess(event.target.id);
+  };
+
+  unBlockAccess = (event) => {
+    this.props.devicesStore.unBlockAccess(event.target.id);
+  };
+
   onChange = (option) => {
     const shard = option.target.value;
     const userId = option.target.id;
@@ -40,6 +48,9 @@ class UsersTab extends React.Component {
       isUsersLoading, users,
     } = this.props.usersStore;
     const { smartappSetting } = this.props.componentStateStore;
+    const {
+      blockedMacs,
+    } = this.props.devicesStore;
     return (
       isUsersLoading ? <Loading /> : (
         <Table striped bordered condensed hover>
@@ -48,6 +59,7 @@ class UsersTab extends React.Component {
               <th>SmartThing device</th>
               <th>Shard</th>
               <th>Mac</th>
+              <th>Internet</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -89,6 +101,26 @@ class UsersTab extends React.Component {
                               </select>
                             </td>
                             <td key={username}>{mac}</td>
+                            <td id={mac} key={`internet_${username}|${mac}`}>
+                              {(blockedMacs.includes(mac)) ? (
+                                <Button
+                                  id={mac}
+                                  bsStyle="primary"
+                                  onClick={event => this.unBlockAccess(event)}
+                                >
+                                unLock Internet
+                                </Button>
+                              )
+                                : (
+                                  <Button
+                                    id={mac}
+                                    bsStyle="primary"
+                                    onClick={event => this.blockAccess(event)}
+                                  >
+                                Block Access
+                                  </Button>
+                                )}
+                            </td>
                             <td>
                               <Button
                                 bsStyle="primary"
