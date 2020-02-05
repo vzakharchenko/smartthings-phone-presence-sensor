@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get install curl
 sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get update
-sudo apt-get install -y nodejs git
+sudo apt-get install -y nodejs git npm
 sudo npm i pm2 -g
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
 sudo mkdir -p /opt/app
