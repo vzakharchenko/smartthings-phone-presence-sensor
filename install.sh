@@ -15,7 +15,7 @@ sudo mkdir -p /opt/config
 sudo chown -R ${currentUser}:${currentUser} /opt/app
 sudo chown -R ${currentUser}:${currentUser} /opt/config
 cd /opt/app
-git clone https://github.com/vzakharchenko/smartthings_asus_router router
+git clone https://github.com/vzakharchenko/Router-as-Presence-sensor router
 cp -n /opt/app/router/config/config.json /opt/config/routerConfig.json
 cd router
 npm i
@@ -23,5 +23,5 @@ cd router-ui
 npm i
 npm run build:prod
 cd ..
-pm2 start AsusSmartAppServer.js
+pm2 start RouterSmartAppServer.js
 pm2 save

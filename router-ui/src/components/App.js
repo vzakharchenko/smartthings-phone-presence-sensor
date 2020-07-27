@@ -20,8 +20,7 @@ class App extends React.Component {
     const { isLoading } = this.props.componentStateStore;
     return (
       <Panel>
-        <Panel.Heading>
-        </Panel.Heading>
+        <Panel.Heading />
         <Panel.Body style={{
           height: 'auto',
           display: 'block',

@@ -14,10 +14,10 @@
  *
  */
 definition(
-        name: "WiFi Mobile Presence",
+        name: "WiFi Device Presence",
         namespace: "vzakharchenko",
         author: "Vasyl Zakharchenko",
-        description: "WiFi Mobile Presence. How to use: https://github.com/vzakharchenko/smartthings_asus_router",
+        description: "WiFi Presence. How to use: https://github.com/vzakharchenko/smartthings_asus_router",
         category: "My Apps",
         iconUrl: "https://cdn3.iconfinder.com/data/icons/mobile-1/100/Icon_SmartphoneWiFi2-512.png",
         iconX2Url: "https://cdn3.iconfinder.com/data/icons/mobile-1/100/Icon_SmartphoneWiFi2-512.png",
@@ -45,21 +45,24 @@ def config() {
     if (state.ip && state.port) {
         refreshInterval = 0
     }
+    def device = searchDevice();
 
-    dynamicPage(name: "config", title: " WiFi Mobile Manager", refreshInterval: refreshInterval) {
-
-
+    dynamicPage(name: "config", title: " WiFi Presence Manager", refreshInterval: refreshInterval) {
+        if (!device) {
+            section("Device Name") {
+                input "deviceName", "text", multiple: false, required: true
+            }
+        }
         section("Setup my device with this IP") {
             input "IP", "string", multiple: false, required: true, defaultValue: state.ip
         }
+
         section("Setup my device first port") {
             input "port", "number", multiple: false, required: true, defaultValue: state.port
         }
+
         section("on this hub...") {
-            input "theHub", "hub", multiple: false, required: false, defaultValue: state.hub
-        }
-        section("Presente Device") {
-            input "presentDevice", "device.simulatedPresenceSensor", multiple: false, required: true
+            input "theHub", "hub", multiple: false, required: true, defaultValue: state.hub
         }
     }
 }
@@ -87,11 +90,18 @@ def updated() {
 
 def initialize() {
     unsubscribe();
+    def presentDevice = searchDevice();
+
+    if (presentDevice == null) {
+        presentDevice = addChildDevice("vzakharchenko", "WiFi Presence Sensor", deviceName, theHub.id, [label: "${deviceName}", name: "${deviceName}"])
+    }
+
     if (IP && port && theHub && presentDevice) {
         apiPost("/registerDevice", null, [name: presentDevice.getId(), secret: state.accessToken, appId: app.id, label: presentDevice.getLabel()])
     }
-    // TODO: subscribe to attributes, devices, locations, etc.
+
 }
+
 
 def getToken() {
     if (!state.accessToken) {
@@ -121,13 +131,16 @@ mappings {
 
 def responsePresent() {
     def json = request.JSON
-    debug("json: $json")
+    debug("present json: $json")
     def maclist = json.maclist;
     def mac = searchMac(maclist, state.macs);
-    if (mac != null) {
-        sendPresentEvent();
-    } else {
-        sendNoPresentEvent();
+    def presentDevice = searchDevice();
+    if (presentDevice) {
+        if (mac != null) {
+            sendPresentEvent(presentDevice);
+        } else {
+            sendNoPresentEvent(presentDevice);
+        }
     }
     return ["status": "ok"]
 }
@@ -141,13 +154,17 @@ def routerInitialization() {
     debug("json: $json")
     debug("json.users = ${json.users}")
     debug("json.guestWiFi = ${json.guestWiFi}")
-    def usersDevices = filterUsersDevices(json.users);
-    debug("usersDevices =${usersDevices}");
+    def presentDevice = searchDevice();
+    if (presentDevice) {
+        def usersDevices = filterUsersDevices(presentDevice, json.users);
+        debug("usersDevices =${usersDevices}");
+    }
+
     state.backendInitialized = true;
     return [status: "ok"]
 }
 
-def filterUsersDevices(usersDevices) {
+def filterUsersDevices(presentDevice, usersDevices) {
     usersDevices.each {
         def user = it.user
         def mac = it.mac
@@ -182,33 +199,44 @@ def debug(message) {
 //    return sendHubCommand(result)
 //}
 
-def sendPresentEvent() {
-    if (presentDevice.hasCommand("arrived")) {
-        presentDevice.arrived();
-    } else if (getLastState() != "present") {
-        debug("current state=${getLastState()}, new state present");
-        sendLocationEvent(name: "presence", value: "present", deviceId: presentDevice.getId(), source: "DEVICE", isStateChange: true)
-        presentDevice.arrived();
+def sendPresentEvent(presentDevice) {
+    if (presentDevice) {
+        if (presentDevice.hasCommand("arrived")) {
+            if ((getLastState(presentDevice) != "present")) {
+                presentDevice.arrived();
+            }
+        } else if (getLastState(presentDevice) != "present") {
+            debug("current state=${getLastState()}, new state present");
+            sendLocationEvent(name: "presence", value: "present", deviceId: presentDevice.getId(), source: "DEVICE", isStateChange: true)
+            presentDevice.arrived();
+        }
     }
 }
 
 
-def sendNoPresentEvent() {
-    if (presentDevice.hasCommand("departed")) {
-        presentDevice.departed();
-    } else if (getLastState() != "not present") {
-        debug("current state=${getLastState()}, new state not present");
-        sendLocationEvent(name: "presence", value: "not present", deviceId: presentDevice.getId(), source: "DEVICE", isStateChange: true)
+def sendNoPresentEvent(presentDevice) {
+    if (presentDevice) {
+        if (presentDevice.hasCommand("departed")) {
+            if ((getLastState(presentDevice) != "not present")) {
+                presentDevice.departed();
+            }
+
+        } else if (getLastState(presentDevice) != "not present") {
+            debug("current state=${getLastState(presentDevice)}, new state not present");
+            sendLocationEvent(name: "presence", value: "not present", deviceId: presentDevice.getId(), source: "DEVICE", isStateChange: true)
+        }
     }
 }
 
-def getLastState() {
-    def events = presentDevice.events(max: 1);
-    if (events && events.size() == 1) {
-        def event = events.get(0);
-        return event.value;
-    } else {
-        return null;
+def getLastState(presentDevice) {
+    if (presentDevice) {
+        def events = presentDevice.events(max: 1);
+        if (events && events.size() == 1) {
+            def event = events.get(0);
+            return event.value;
+        } else {
+            return null;
+        }
     }
 }
 
@@ -326,4 +354,16 @@ def getUUIDFromUSN(usn) {
             return parts[i + 1]
         }
     }
+}
+
+def searchDevice() {
+    def devices = getAllDevices();
+    if (devices) {
+        return devices.get(0);
+    }
+    return null;
+}
+
+def getAllDevices() {
+    return childDevices;
 }

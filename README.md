@@ -1,7 +1,11 @@
 # smartthings router connection
 ## Description
-    With this project you can use your router as a presence detector
-  **Supported  SmartThings and SmartThing Classic applications**
+    With this project you can use your router as a presence detector for your phones.
+## Features
+    - Presence sensor based on DHCP lease.
+    - can detect mobile phone in sleep state
+    - support mikrotik, asus, tplink
+  **Supported  SmartThings and SmartThings Classic applications**
 ## Supported device list:
 Asus:
 
@@ -58,104 +62,121 @@ Asus:
     - RT-N12D1
     - DSL-AC68U/R
 TpLink:
-
     tested on TP-LINK Touch P5
 Mikrotik:
 
     tested on RB962UiGS-5HacT2HnT-US/RB962UiGS-5HacT2HnT
 
 ## Installation Steps:
-1. Install server
-`curl -sSL https://raw.githubusercontent.com/vzakharchenko/smartthings_asus_router/master/install.sh | bash`
-2. open link http:/<YOUR_SERVER_IP>:5000
-3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/routerSetting.png?raw=true)
-4. select router type: asus or tplink or mikrotik
-5. set ip(hostname) of router  web admin UI 
-6. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
-7. set login and password of router  web admin UI 
-8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings_asus_router#install-smartapp-source "install SmartApp Source")
-9. [Add new device](https://github.com/vzakharchenko/smartthings_asus_router#add-new-device "Add new device")
-10. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings_asus_router#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
-11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings_asus_router#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
-12. add more devices if necessary, for this repeat steps 7-10 to do this
-13. now you can use Smartthings Device for automation)
+1. Install server  
+```bash
+curl -sSL https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/install.sh | bash
+```  
+or  
+[Manual Server Installation Steps](https://github.com/vzakharchenko/Router-as-Presence-sensor#manual-server-installation Steps "Manual Server Installation Steps"0)  
+2. open link http:/<YOUR_SERVER_IP>:5000  
+3. open router Setting tab  ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/routerSetting.png?raw=true)  
+4. select router type: asus or tplink or mikrotik  
+5. set ip(hostname) of router  web admin UI  
+6. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)  
+7. set login and password of router  web admin UI  
+8. [install SmartApp Source](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-smartapp-source "install SmartApp Source")  
+9. [Create new device handler](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-device-handler "install device Handler")  
+10. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/Router-as-Presence-sensor#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")  
+11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/Router-as-Presence-sensor#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")  
+12. add more devices if necessary, for this repeat steps 7-10 to do this  
+13. now you can use Smartthings Device for automation  
 
 
-##Manual Server Installation Steps:
-1. setup linux on RaspberryPi https://ubuntu.com/download/iot/raspberry-pi-2-3
-2. install node.
-`sudo apt-get install curl
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
-`sudo apt-get install nodejs`
-3. install git
-`sudo apt-get install git`
-4. install pm2
-`sudo npm i pm2 -g`
-5. add pm2 to autostart
-`sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}`
-6. make directory /opt/app
-`sudo mkdir -p /opt/app`
-7. make directory /opt/config
-8. change ownership of /opt/app and /opt/config
-`sudo chown -R <USER>:<USER> /opt/app`
-`sudo chown -R <USER>:<USER> /opt/config`
-9. checkout project
-`cd /opt/app`
-`git clone https://github.com/vzakharchenko/smartthings_asus_router router`
-10.  copy config `cp -n /opt/app/router/config/config.json /opt/config/routerConfig.json`
-11.  install and build project
-`cd /opt/app/router`
-`npm i`
-`cd router-ui`
-`npm i`
-`npm build`
-`cd ..`
-12. add poject to pm2
-`cd /opt/app/router`
-`pm2 start AsusSmartAppServer.js`
-`pm2 save`
+## Manual Server Installation Steps:
+1. setup linux on RaspberryPi https://ubuntu.com/download/iot/raspberry-pi-2-3  
+2. install node.  
+```bash
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install nodejs
+```
+or  
+```bash
+sudo apt-get install snapd
+sudo snap install node --channel=14/stable --classic
+```
+3. install git  
+`sudo apt-get install git`  
+4. install pm2  
+`sudo npm i pm2 -g`  
+5. add pm2 to autostart  
+```bash
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
+```  
+6. make directory /opt/app  
+```bash
+ sudo mkdir -p /opt/app
+```  
+7. make directory /opt/config  
+8. change ownership of /opt/app and /opt/config  
+```bash
+ sudo chown -R <USER>:<USER> /opt/app
+sudo chown -R <USER>:<USER> /opt/config
+```  
+9. checkout project  
+```bash
+ cd /opt/app
+ git clone https://github.com/vzakharchenko/https://github.com/vzakharchenko/Router-as-Presence-sensor router
+```  
+10.  copy config `cp -n /opt/app/router/config/config.json /opt/config/routerConfig.json`  
+11.  install and build project  
+```bash
+cd /opt/app/router
+npm i
+cd router-ui
+npm i
+npm build
+cd ..
+```  
+12. add poject to pm2  
+```bash
+cd /opt/app/router
+pm2 start RouterSmartAppServer.js
+pm2 save
+```  
  
 ## Router setting
-1. open link http:/<YOUR_SERVER_IP>:5000
-2. open router Setting tab ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/routerSetting.png?raw=true)
-3. select router type: asus or tplink or mikrotik
-4. set ip(hostname) of router  web admin UI 
-5. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
-6. set login and password of router
+1. open link http:/<YOUR_SERVER_IP>:5000  
+2. open router Setting tab ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/routerSetting.png?raw=true)  
+3. select router type: asus or tplink or mikrotik  
+4. set ip(hostname) of router  web admin UI  
+5. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)  
+6. set login and password of router  
 
-## install SmartApp Source
-1. open https://graph.api.smartthings.com/location/list with your samsung account
-2. select your location ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/Location.png?raw=true)
-3. add new smartapp ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addNewSmartApp.png?raw=true)
-4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/smartthings_asus_router/master/smartapps/WiFi%20Mobile%20Presence.groovy ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/createNewSmartApp.png?raw=true)
-5. open App-Setting[https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/selectAppSetting.png?raw=true](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/selectAppSetting.png?raw=true)
-6. enable oauth in smartapp![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/enableOAuth.png?raw=true)
-7.  save and publish![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/saveAndPublish.png?raw=true)
+## install SmartApp Source  
+1. open https://graph.api.smartthings.com/location/list with your samsung account  
+2. select your location ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/Location.png?raw=true)  
+3. add new smartapp ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addNewSmartApp.png?raw=true)  
+4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/smartapps/WiFi%20Presence.groovy ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/createNewSmartApp.png?raw=true)  
+5. open App-Setting[https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectAppSetting.png?raw=true](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectAppSetting.png?raw=true)  
+6. enable oauth in smartapp![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/enableOAuth.png?raw=true)  
+7.  save and publish![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/saveAndPublish.png?raw=true)  
 
-## Add new device
-1. open https://graph.api.smartthings.com/location/list with your samsung account
-2. select your location ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/Location.png?raw=true)
-3. goto "My Devices" -> "+ New Device"![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addNewDevice.png?raw=true)
-4. fill all required fields, **Type: "Simulated Presence Sensor" **![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/createPresenteSensor.png?raw=true)
+## install device Handler
+1. open https://graph.api.smartthings.com/location/list with your samsung account  
+2. select your location ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/Location.png?raw=true)  
+3. goto "My Device Handlers" -> "Create New Device Handler"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/newDeviceHandler.png?raw=true)  
+4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/deviceHandler/WifiPresence.groovy ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/newDeviceHandler2.png?raw=true)  
 
 ## Add a new SmartApp to SmartThings Classic
-1. install SmartThings Classic
-2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addSmartApp.png?raw=true)
-3. select "My app" category ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/MyApps.png?raw=true)
-4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/addWifiMobilePresence.png?raw=true)
-5. set Server IP, port, hub and Simulated Presence Sensor and click save ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/settingSmartApp.png?raw=true)
+1. install SmartThings Classic  
+2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addSmartApp.png?raw=true)  
+3. select "My app" category ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/MyApps.png?raw=true)  
+4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addWifiMobilePresence.png?raw=true)  
+5. set Server IP, port, hub and Presence Sensor Name and click save ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/settingSmartApp.png?raw=true)  
 
 ## Assign Phone Mac address to  SmartThing Device
-1. open link http:/<YOUR_SERVER_IP>:5000
-2. goto Device Tab
-3. assign network device to Smartthings Device![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/assignMac.png?raw=true)
+1. open link http:/<YOUR_SERVER_IP>:5000  
+2. goto Device Tab  
+3. assign network device to Smartthings Device![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/assignMac.png?raw=true)  
 
 ## Remove Mac address from  SmartThings Device
-1. open link http:/<YOUR_SERVER_IP>:5000
-2. goto "SmartThing Devices" Tab
-3. click "unAssign" ![](https://github.com/vzakharchenko/smartthings_asus_router/blob/master/img/unAssign.png?raw=true)
-
-
-
-My env: [![CircleCI](https://circleci.com/gh/vzakharchenko/smartthings_asus_router.svg?style=svg)](https://circleci.com/gh/vzakharchenko/smartthings_asus_router)
-
+1. open link http:/<YOUR_SERVER_IP>:5000  
+2. goto "SmartThing Devices" Tab  
+3. click "unAssign" ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/unAssign.png?raw=true)  
