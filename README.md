@@ -79,7 +79,7 @@ or
 4. select router type: asus or tplink or mikrotik
 5. set ip(hostname) of router  web admin UI 
 6. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
-7. set login and password of router  web admin UI 
+7. set login and password of router  web admin UI
 8. [install SmartApp Source](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-smartapp-source "install SmartApp Source")
 9. [Create new device handler](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-device-handler "install device Handler")
 10. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/Router-as-Presence-sensor#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")
@@ -106,7 +106,9 @@ sudo snap install node --channel=14/stable --classic
 4. install pm2
 `sudo npm i pm2 -g`
 5. add pm2 to autostart
-`sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}`
+```bash
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
+```
 6. make directory /opt/app
 ```bash
  sudo mkdir -p /opt/app
@@ -143,7 +145,7 @@ pm2 save
 1. open link http:/<YOUR_SERVER_IP>:5000
 2. open router Setting tab ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/routerSetting.png?raw=true)
 3. select router type: asus or tplink or mikrotik
-4. set ip(hostname) of router  web admin UI 
+4. set ip(hostname) of router  web admin UI
 5. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
 6. set login and password of router
 
@@ -177,4 +179,4 @@ pm2 save
 ## Remove Mac address from  SmartThings Device
 1. open link http:/<YOUR_SERVER_IP>:5000
 2. goto "SmartThing Devices" Tab
-3. click "unAssign" ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/unAssign.png?raw=true)
+3. click "unAssign" ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/unAssign.png?raw=true)  
