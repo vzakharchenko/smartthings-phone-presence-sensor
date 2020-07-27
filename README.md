@@ -4,6 +4,7 @@
 
 ## Description
     With this project you can use your router as a presence detector for your phones.
+    Reads known personal mobile device's MAC address(using DHCP leases) to check each person's presence.
 ## Features
     - Presence sensor based on DHCP lease.
     - can detect mobile phone in sleep state
