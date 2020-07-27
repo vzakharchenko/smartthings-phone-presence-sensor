@@ -1,4 +1,7 @@
 # smartthings router connection
+
+![Node.js CI](https://github.com/vzakharchenko/Router-as-Presence-sensor/workflows/Node.js%20CI/badge.svg)  
+
 ## Description
     With this project you can use your router as a presence detector for your phones.
 ## Features
