@@ -86,7 +86,7 @@ class ServerTab extends React.Component {
                   bsStyle="primary"
                   onClick={() => this.saveHandle()}
                 >
-                        Save
+                  Save
                 </Button>
               </td>
             </tr>
