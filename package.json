@@ -1,7 +1,7 @@
 {
-  "name": "AsusGuestNetwork",
+  "name": "RouterPresenceSensors",
   "version": "1.0.0",
-  "description": "asus guest network manager",
+  "description": "Presence detection by reading leases on DHCP server",
   "main": "RouterSmartAppServer.js",
   "scripts": {
     "start": "node  RouterSmartAppServer.js ",
