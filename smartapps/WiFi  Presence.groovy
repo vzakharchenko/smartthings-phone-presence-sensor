@@ -48,9 +48,12 @@ def config() {
     def device = searchDevice();
 
     dynamicPage(name: "config", title: " WiFi Presence Manager", refreshInterval: refreshInterval) {
-        if (!device) {
-            section("Device Name") {
+
+        section("Device Name") {
+            if (!device) {
                 input "deviceName", "text", multiple: false, required: true
+            } else {
+                paragraph device.label
             }
         }
         section("Setup my device with this IP") {
@@ -65,6 +68,7 @@ def config() {
             input "theHub", "hub", multiple: false, required: true, defaultValue: state.hub
         }
     }
+
 }
 
 def installed() {
