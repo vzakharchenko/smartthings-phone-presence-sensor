@@ -9,19 +9,7 @@ jobs:
     steps: # a collection of executable commands
 
       - checkout # check out source code to working directory
-
-      - add_ssh_keys:
-          fingerprints:
-            - "55:d4:38:8c:6f:4d:a9:d5:95:c0:0e:7a:d6:f1:ee:7e"
-#      - run:
-#          name: fix host authenticity for production server
-#          command: ssh-keyscan -p $SERVER_PORT $SERVER_HOST >> ~/.ssh/known_hosts
-      - run:
-          name: create Keycloak.json
-          command: echo $KEYCLOAK_JSON > keycloak.json
-      - run:
-          name: create branch name
-          command: echo $CIRCLE_BRANCH > branch
+    
       - run:
           name: backend install
           command: npm i
