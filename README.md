@@ -153,7 +153,7 @@ pm2 save
 1. open https://graph.api.smartthings.com/location/list with your samsung account  
 2. select your location ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/Location.png?raw=true)  
 3. add new smartapp ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addNewSmartApp.png?raw=true)  
-4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/smartapps/WiFi%20Presence.groovy ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/createNewSmartApp.png?raw=true)  
+4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/smartapps/WiFi%20%20Presence.groovy ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/createNewSmartApp.png?raw=true)  
 5. open App-Setting[https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectAppSetting.png?raw=true](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectAppSetting.png?raw=true)  
 6. enable oauth in smartapp![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/enableOAuth.png?raw=true)  
 7.  save and publish![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/saveAndPublish.png?raw=true)  
