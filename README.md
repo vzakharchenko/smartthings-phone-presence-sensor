@@ -73,7 +73,7 @@ Mikrotik:
 curl -sSL https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/install.sh | bash
 ```  
 or  
-[Manual Server Installation Steps](https://github.com/vzakharchenko/Router-as-Presence-sensor#manual-server-installation-steps)  
+[Manual Server Installation Steps](https://github.com/vzakharchenko/Router-as-Presence-sensor#manual-server-installation-steps)
 2. open link http:/<YOUR_SERVER_IP>:5000  
 3. open router Setting tab  ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/routerSetting.png?raw=true)  
 4. select router type: asus or tplink or mikrotik  
@@ -154,7 +154,7 @@ pm2 save
 2. select your location ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/Location.png?raw=true)  
 3. add new smartapp ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addNewSmartApp.png?raw=true)  
 4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/smartapps/WiFi%20%20Presence.groovy ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/createNewSmartApp.png?raw=true)  
-5. open App-Setting[https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectAppSetting.png?raw=true](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectAppSetting.png?raw=true)  
+5. open App-Setting ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectAppSetting.png?raw=true)
 6. enable oauth in smartapp![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/enableOAuth.png?raw=true)  
 7.  save and publish![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/saveAndPublish.png?raw=true)  
 
