@@ -25,7 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm i
-    - run: npm lint
+    - run: npm run lint
     - run: cd router-ui && npm i
-    - run: cd router-ui && npm build
+    - run: cd router-ui && npm run build:prod
     - run: cd router-ui && npm lint
