@@ -109,7 +109,7 @@ class AsusTab extends React.Component {
                 bsStyle="primary"
                 onClick={() => this.saveHandle()}
               >
-                        Save
+                Save
               </Button>
             </tr>
           </tbody>

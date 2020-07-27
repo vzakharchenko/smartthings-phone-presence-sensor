@@ -2,12 +2,12 @@
   "name": "AsusGuestNetwork",
   "version": "1.0.0",
   "description": "asus guest network manager",
-  "main": "AsusSmartAppServer.js",
+  "main": "RouterSmartAppServer.js",
   "scripts": {
-    "start": "node  AsusSmartAppServer.js ",
-    "lint": "eslint --ext .js lib/* AsusSmartAppServer.js",
-    "lint:fix": "eslint --fix --ext .js lib/* AsusSmartAppServer.js",
-    "start-boot": "pm2 start AsusSmartAppServer.js"
+    "start": "node  RouterSmartAppServer.js ",
+    "lint": "eslint --ext .js lib/* RouterSmartAppServer.js",
+    "lint:fix": "eslint --fix --ext .js lib/* RouterSmartAppServer.js",
+    "start-boot": "pm2 start RouterSmartAppServer.js"
   },
   "author": "vzakharchenko",
   "license": "ISC",

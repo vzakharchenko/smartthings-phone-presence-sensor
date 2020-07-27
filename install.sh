@@ -22,5 +22,5 @@ cd router-ui
 npm i
 npm run build:prod
 cd ..
-pm2 start AsusSmartAppServer.js
+pm2 start RouterSmartAppServer.js
 pm2 save

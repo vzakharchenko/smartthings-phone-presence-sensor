@@ -10,4 +10,4 @@ then
 fi
 
 kill `ps x | grep 'node server.js' | grep -v 'grep' | cut -c1-5 | xargs` || true
-node AsusSmartAppServer.js
+node RouterSmartAppServer.js

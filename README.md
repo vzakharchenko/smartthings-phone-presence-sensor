@@ -58,7 +58,6 @@ Asus:
     - RT-N12D1
     - DSL-AC68U/R
 TpLink:
-
     tested on TP-LINK Touch P5
 Mikrotik:
 
@@ -112,7 +111,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -`
 `cd ..`
 12. add poject to pm2
 `cd /opt/app/router`
-`pm2 start AsusSmartAppServer.js`
+`pm2 start RouterSmartAppServer.js`
 `pm2 save`
  
 ## Router setting
