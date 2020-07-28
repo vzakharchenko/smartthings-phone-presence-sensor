@@ -3,7 +3,6 @@ import { fetchData, sendData } from '../utils/restCalls';
 
 const serverUrl = process.env.SERVER_URL;
 
-
 export class UsersStore {
     @observable users = [];
 
@@ -30,7 +29,6 @@ export class UsersStore {
       });
       this.users = userData;
     }
-
 
     @action load() {
       this.isUsersLoading = true;

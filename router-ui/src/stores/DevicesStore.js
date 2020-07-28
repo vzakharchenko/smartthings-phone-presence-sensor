@@ -3,7 +3,6 @@ import { fetchData, sendData } from '../utils/restCalls';
 
 const serverUrl = process.env.SERVER_URL;
 
-
 export class DevicesStore {
     @observable devices = [];
 
@@ -23,7 +22,6 @@ export class DevicesStore {
         this.blockedMacs = res.data.blockedMacs || [];
       }
     }
-
 
     @action load() {
       this.isDevicesLoading = true;
