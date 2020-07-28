@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
@@ -48,20 +48,9 @@ if (env === 'production') {
   optimization.namedChunks = false;
   optimization.mangleWasmImports = true;
   optimization.moduleIds = 'hashed';
-  optimization.minimizer = [
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: false,
-        },
-        minify: {},
-        compress: {
-          booleans: true,
-          // ...
-        },
-      },
-    }),
-  ];
+  optimization.minimizer = [new TerserPlugin({
+    extractComments: true,
+  })];
 }
 
 module.exports = {
