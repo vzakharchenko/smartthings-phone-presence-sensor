@@ -11,7 +11,7 @@
 - Presence sensor based on DHCP lease.  
 - can detect mobile phone in sleep state  
 - support mikrotik, asus, tplink  
-  **Supported  ![SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect) and ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) applications**  
+  **Supported  [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect) and [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) applications**  
 ## Supported device list:  
 Asus:  
 
@@ -70,8 +70,7 @@ Asus:
 TpLink:  
     tested on TP-LINK Touch P5
 Mikrotik:  
-
-    tested on RB962UiGS-5HacT2HnT-US/RB962UiGS-5HacT2HnT
+ - all devices
 
 ## Installation Steps with Smartthings Hub:
 1. Install server    
@@ -211,23 +210,23 @@ pm2 save
 3. goto "My Device Handlers" -> "Create New Device Handler"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/newDeviceHandler.png?raw=true)  
 4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/deviceHandler/WifiPresence.groovy ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/newDeviceHandler2.png?raw=true)  
 
-## Add a new SmartApp to ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
-1. install ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
+## Add a new SmartApp to [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
+1. install [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
 2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addSmartApp.png?raw=true)   
 3. select "My app" category ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/MyApps.png?raw=true)  
 4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addWifiMobilePresence.png?raw=true)  
 5. set Server IP, port, hub and Presence Sensor Name and click save ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/settingSmartApp.png?raw=true)  
 
 
-## Add a new SmartApp to ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) without Smartthings Hub
-1. install ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
+## Add a new SmartApp to [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) without Smartthings Hub
+1. install [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
 2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addSmartApp.png?raw=true)  
 3. select "My app" category ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/MyApps.png?raw=true)  
 4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addWifiMobilePresence.png?raw=true)  
 5. set Server IP, port and Presence Sensor Name and click save ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/withoutHub.png?raw=true)  
 
-## Add a new SmartApp to ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) outside network
-1. install ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
+## Add a new SmartApp to [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) outside network
+1. install [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
 2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addSmartApp.png?raw=true)  
 3. select "My app" category ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/MyApps.png?raw=true)  
 4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addWifiMobilePresence.png?raw=true)  
