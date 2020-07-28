@@ -1,6 +1,8 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Button, Table } from 'react-bootstrap';
+import {
+  Button, ControlLabel, FormControl, Table,
+} from 'react-bootstrap';
 import Loading from './Loading';
 
 export default
@@ -29,6 +31,18 @@ class UsersTab extends React.Component {
       this.props.usersStore.setFormData(event.target.name, event.target.value);
     };
 
+  handleNewAppId = (event, value) => {
+    this.props.usersStore.modifyAppId(
+      value || event.target.value,
+    );
+  };
+
+  handleNewSecret = (event, value) => {
+    this.props.usersStore.modifySecret(
+      value || event.target.value,
+    );
+  };
+
   onChange = (option) => {
     const shard = option.target.value;
     const userId = option.target.id;
@@ -46,6 +60,8 @@ class UsersTab extends React.Component {
           <thead>
             <tr>
               <th>SmartThing device</th>
+              <th>applicationId</th>
+              <th>secret</th>
               <th>Shard</th>
               <th>Mac</th>
               <th>Delete</th>
@@ -55,12 +71,14 @@ class UsersTab extends React.Component {
             {
                     users.map((user) => {
                       const {
-                        username, macs, label, shard,
+                        username, macs, label, shard, appId, secret,
                       } = user;
                       return (macs && macs.length > 0
                         ? macs.map(mac => (
                           <tr key={`${username}|${mac}`}>
                             <td>{label}</td>
+                            <td>{appId}</td>
+                            <td>{secret}</td>
                             <td>
                               <select
                                 id={`${username}|shard`}
@@ -101,6 +119,8 @@ class UsersTab extends React.Component {
                         )) : (
                           <tr key={username}>
                             <td>{label}</td>
+                            <td>{appId}</td>
+                            <td>{secret}</td>
                             <td>
                               <select
                                 id={`${username}`}
@@ -141,6 +161,37 @@ class UsersTab extends React.Component {
                         )
                       );
                     })}
+            <tr key="newUser">
+              <td />
+              <td>
+                <ControlLabel>Application Id</ControlLabel>
+                <FormControl
+                  type="text"
+                  name="newAppId"
+                  placeholder="newAppId"
+                  onChange={this.handleNewAppId}
+                />
+              </td>
+              <td>
+                <ControlLabel>Secret</ControlLabel>
+                <FormControl
+                  type="text"
+                  name="newSecret"
+                  placeholder="newSecret"
+                  onChange={this.handleNewSecret}
+                />
+              </td>
+              <td />
+              <td />
+              <td>
+                <Button
+                  bsStyle="primary"
+                  onClick={() => this.addUserHandle()}
+                >
+                  Add Device
+                </Button>
+              </td>
+            </tr>
           </tbody>
         </Table>
       )

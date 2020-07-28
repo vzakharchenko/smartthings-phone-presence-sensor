@@ -6,10 +6,12 @@
     With this project you can use your router as a presence detector for your phones.
     Reads known personal mobile device's MAC address(using DHCP leases) to check each person's presence.
 ## Features
+    - ![can work without Smartthings hub](https://github.com/vzakharchenko/Router-as-Presence-sensor#installation-steps-without-smartthings-hub)
+    - ![can setup outside your network(communicate directly with cloud)]()
     - Presence sensor based on DHCP lease.
     - can detect mobile phone in sleep state
     - support mikrotik, asus, tplink
-  **Supported  SmartThings and SmartThings Classic applications**
+  **Supported  ![SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect) and ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) applications**
 ## Supported device list:
 Asus:
 
@@ -71,7 +73,7 @@ Mikrotik:
 
     tested on RB962UiGS-5HacT2HnT-US/RB962UiGS-5HacT2HnT
 
-## Installation Steps:
+## Installation Steps with Smartthings Hub:
 1. Install server  
 ```bash
 curl -sSL https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/install.sh | bash
@@ -89,8 +91,49 @@ or
 10. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/Router-as-Presence-sensor#add-a-new-smartapp-to-smartthings-classic "Add a new SmartApp to SmartThings Classic")  
 11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/Router-as-Presence-sensor#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")  
 12. add more devices if necessary, for this repeat steps 7-10 to do this  
-13. now you can use Smartthings Device for automation  
+13. now you can use Smartthings Device for automation
 
+## Installation Steps without Smartthings Hub:
+
+1. Install server
+```bash
+curl -sSL https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/install.sh | bash
+```
+or
+[Manual Server Installation Steps](https://github.com/vzakharchenko/Router-as-Presence-sensor#manual-server-installation-steps)
+2. open link http:/<YOUR_SERVER_IP>:5000
+3. open router Setting tab  ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/routerSetting.png?raw=true)
+4. select router type: asus or tplink or mikrotik
+5. set ip(hostname) of router  web admin UI
+6. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
+7. set login and password of router  web admin UI
+8. [install SmartApp Source](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-smartapp-source "install SmartApp Source")
+9. [Create new device handler](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-device-handler "install device Handler")
+10. [Add new SmartApp to SmartThings Classic without Smartthings Hub](https://github.com/vzakharchenko/Router-as-Presence-sensor#add-a-new-smartapp-to-smartthings-classic-without-smartthings-hub)
+11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/Router-as-Presence-sensor#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
+12. add more devices if necessary, for this repeat steps 7-10 to do this
+13. now you can use Smartthings Device for automation
+
+## Installation Outside your network:
+
+1. Install server
+```bash
+curl -sSL https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/install.sh | bash
+```
+or
+[Manual Server Installation Steps](https://github.com/vzakharchenko/Router-as-Presence-sensor#manual-server-installation-steps)
+2. open link http:/<YOUR_SERVER_IP>:5000
+3. open router Setting tab  ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/routerSetting.png?raw=true)
+4. select router type: asus or tplink or mikrotik
+5. set ip(hostname) of router  web admin UI
+6. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
+7. set login and password of router  web admin UI
+8. [install SmartApp Source](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-smartapp-source "install SmartApp Source")
+9. [Create new device handler](https://github.com/vzakharchenko/Router-as-Presence-sensor#install-device-handler "install device Handler")
+10. [Add new SmartApp to SmartThings Classic with device name](https://github.com/vzakharchenko/Router-as-Presence-sensor#add-a-new-smartapp-to-smartthings-classic-outside-of-network)
+11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/Router-as-Presence-sensor#assign-phone-mac-address-to--smartthing-device "Assign Phone Mac address to  SmartThing Device")
+12. add more devices if necessary, for this repeat steps 7-10 to do this
+13. now you can use Smartthings Device for automation
 
 ## Manual Server Installation Steps:
 1. setup linux on RaspberryPi https://ubuntu.com/download/iot/raspberry-pi-2-3  
@@ -168,19 +211,45 @@ pm2 save
 3. goto "My Device Handlers" -> "Create New Device Handler"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/newDeviceHandler.png?raw=true)  
 4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/deviceHandler/WifiPresence.groovy ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/newDeviceHandler2.png?raw=true)  
 
-## Add a new SmartApp to SmartThings Classic
-1. install SmartThings Classic  
+## Add a new SmartApp to ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)
+1. install ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)
 2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addSmartApp.png?raw=true)  
 3. select "My app" category ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/MyApps.png?raw=true)  
 4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addWifiMobilePresence.png?raw=true)  
-5. set Server IP, port, hub and Presence Sensor Name and click save ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/settingSmartApp.png?raw=true)  
+5. set Server IP, port, hub and Presence Sensor Name and click save ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/settingSmartApp.png?raw=true)
+
+
+## Add a new SmartApp to ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) without Smartthings Hub
+1. install ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)
+2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addSmartApp.png?raw=true)
+3. select "My app" category ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/MyApps.png?raw=true)
+4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addWifiMobilePresence.png?raw=true)
+5. set Server IP, port and Presence Sensor Name and click save ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/withoutHub.png?raw=true)
+
+## Add a new SmartApp to ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) outside network
+1. install ![SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)
+2. open "Automation" Tab->"SmartApps" -> "add SmartApp"![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addSmartApp.png?raw=true)
+3. select "My app" category ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/MyApps.png?raw=true)
+4. add "WiFi Mobile Manager![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/addWifiMobilePresence.png?raw=true)
+5. set Presence Sensor Name and click save ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/outsideNetwork.png?raw=true)
 
 ## Assign Phone Mac address to  SmartThing Device
 1. open link http:/<YOUR_SERVER_IP>:5000  
 2. goto Device Tab  
-3. assign network device to Smartthings Device![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/assignMac.png?raw=true)  
+3. assign network device to Smartthings Device ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/assignMac.png?raw=true)
 
 ## Remove Mac address from  SmartThings Device
 1. open link http:/<YOUR_SERVER_IP>:5000  
 2. goto "SmartThing Devices" Tab  
 3. click "unAssign" ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/unAssign.png?raw=true)  
+
+## Manually add Integration between SmartApp and nodejs server
+
+1. get  applicationId and secret from SmartApp
+    - open smartapp on phone: ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/SecretAppIdPhone.png?raw=true)
+    or
+    - open smartapp on ![smartthing portal](https://graph.api.smartthings.com):   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/installedSmartapps.png?raw=true)   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectsSmartApp.png?raw=true)   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/AppIdSecretWeb.png?raw=true)
+2. open link http:/<YOUR_SERVER_IP>:5000
+3. goto "SmartThing Devices" Tab
+4. set applicationId and secret from step 1, and click "add Device" ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/ManuallyAddDevice.png?raw=true)
+

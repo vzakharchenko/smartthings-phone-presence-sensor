@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -9,6 +8,7 @@ const {
   removeMacToUser,
   removeUser,
   assignShard,
+  addUser,
 } = require('./lib/userManager');
 const { getListComponents } = require('./lib/componentManager');
 const { getAllNetwork, getAllNetworkUI } = require('./lib/modifyNetwork');
@@ -52,12 +52,10 @@ server.use(cors(corsOptions));
 
 connectKeycloak(server);
 
-
 server.get('/health', cors(corsOptions), (req, res) => {
   const status = { status: 'OK' };
   res.send(JSON.stringify(status));
 });
-
 
 // server.get('/createGuestNetwork', cors(corsOptions), (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -104,7 +102,7 @@ server.post('/registerDevice', cors(corsOptions), (req, res) => {
   saveSmartThingDeviceInfo(req, res);
 });
 
-// BACKEND UI SERVICES
+// BACKEND UI SERVIC9mi8ES
 
 server.use('/', protect(), express.static(`${__dirname}/router-ui/public`));
 
@@ -131,6 +129,11 @@ server.post('/ui/removeUser', protect(), cors(corsOptions), (req, res) => {
 server.get('/ui/getUsers', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   getUsers(req, res);
+});
+
+server.post('/ui/addUser', protect(), cors(corsOptions), (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  addUser(req, res);
 });
 
 server.get('/ui/networks', protect(), cors(corsOptions), (req, res) => {
