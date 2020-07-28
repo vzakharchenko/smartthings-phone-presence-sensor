@@ -38,11 +38,14 @@ def config() {
     state.refreshCount = refreshCount + 1
     def refreshInterval = refreshCount == 0 ? 2 : 5
     //ssdp request every fifth refresh
-    if ((refreshCount % 5) == 0) {
+    if ((refreshCount % 10) == 0) {
         ssdpDiscover();
     }
 
     if (state.ip && state.port) {
+        refreshInterval = 0
+    }
+    if ((state.ip || state.port) && !state.theHub) {
         refreshInterval = 0
     }
     def device = searchDevice();
@@ -57,15 +60,23 @@ def config() {
             }
         }
         section("Setup my device with this IP") {
-            input "IP", "string", multiple: false, required: true, defaultValue: state.ip
+            input "IP", "string", multiple: false, required: false, defaultValue: state.ip
         }
 
         section("Setup my device first port") {
-            input "port", "number", multiple: false, required: true, defaultValue: state.port
+            input "port", "number", multiple: false, required: false, defaultValue: state.port
         }
 
         section("on this hub...") {
-            input "theHub", "hub", multiple: false, required: true, defaultValue: state.hub
+            input "theHub", "hub", multiple: false, required: false, defaultValue: state.hub
+        }
+
+        section("Server info") {
+            if (state.accessToken && device) {
+                paragraph "id=${device.id}"
+                paragraph "appId=${app.id}"
+                paragraph "secret=${state.accessToken}"
+            }
         }
     }
 
@@ -97,7 +108,8 @@ def initialize() {
     def presentDevice = searchDevice();
 
     if (presentDevice == null) {
-        presentDevice = addChildDevice("vzakharchenko", "WiFi Presence Sensor", deviceName, theHub.id, [label: "${deviceName}", name: "${deviceName}"])
+        presentDevice = addChildDevice("vzakharchenko", "WiFi Presence Sensor", deviceName, theHub? theHub.id: null, [label: "${deviceName}", name: "${deviceName}"])
+        state.deviceId = presentDevice.id;
     }
 
     if (IP && port && theHub && presentDevice) {
@@ -125,11 +137,26 @@ mappings {
                 POST: "routerInitialization"
         ]
     }
+    path("/smartapp/info") {
+        action:
+        [
+                GET: "smartInfo"
+        ]
+    }
     path("/Phone/status") {
         action:
         [
                 POST: "responsePresent"
         ]
+    }
+}
+
+def smartInfo() {
+    def presentDevice = searchDevice();
+    if (presentDevice) {
+        return ["${presentDevice.id}": ["appId": "${app.id}", "secret": "${state.accessToken}", "label": "${presentDevice.label}"]]
+    } else {
+        return [];
     }
 }
 

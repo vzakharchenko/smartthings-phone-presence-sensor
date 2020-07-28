@@ -3,13 +3,14 @@ import { fetchData, sendData } from '../utils/restCalls';
 
 const serverUrl = process.env.SERVER_URL;
 
-
 export class UsersStore {
     @observable users = [];
 
     @observable error = undefined;
 
-    @observable newUserName = undefined;
+    @observable newAppId = null;
+
+    @observable newSecret = null;
 
     @observable isUsersLoading = false;
 
@@ -19,14 +20,15 @@ export class UsersStore {
       Object.keys(res.data).forEach((username) => {
         const datum = res.data[username];
         const macs = datum.mac;
-        const { label, shard } = datum;
+        const {
+          label, shard, appId, secret,
+        } = datum;
         userData.push({
-          username, macs, label, shard,
+          username, macs, label, shard, appId, secret,
         });
       });
       this.users = userData;
     }
-
 
     @action load() {
       this.isUsersLoading = true;
@@ -117,7 +119,7 @@ export class UsersStore {
       this.isUsersLoading = true;
       sendData(`${serverUrl}ui/addUser`,
         'POST',
-        JSON.stringify({ username: this.newUserName }), {
+        JSON.stringify({ appId: this.newAppId, secret: this.newSecret }), {
           'Content-Type': 'application/json',
         }).then(action(() => {
         action(this.load());
@@ -128,6 +130,14 @@ export class UsersStore {
       ).finally(action(() => {
         this.isUsersLoading = false;
       }));
+    }
+
+    @action modifyAppId(elementValue) {
+      this.newAppId = elementValue;
+    }
+
+    @action modifySecret(elementValue) {
+      this.newSecret = elementValue;
     }
 }
 

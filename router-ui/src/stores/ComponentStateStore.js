@@ -3,7 +3,6 @@ import { fetchData, sendData } from '../utils/restCalls';
 
 const serverUrl = process.env.SERVER_URL;
 
-
 export class ComponentStateStore {
     @observable users = false;
 
@@ -75,7 +74,6 @@ export class ComponentStateStore {
       this.smartappSetting = res.data.smartapp;
       this.asusSetting = res.data.router;
     }
-
 
     @action load() {
       this.isLoading = true;

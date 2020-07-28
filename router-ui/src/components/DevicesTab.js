@@ -74,7 +74,7 @@ class DevicesTab extends React.Component {
                                 >
                                   {!userAssigned ? <option value="0" selected /> : null }
                                   {userList.map(
-                                    user => (
+                                    (user) => (
                                       userAssigned && user.username === userAssigned.username
                                         ? (
                                           <option

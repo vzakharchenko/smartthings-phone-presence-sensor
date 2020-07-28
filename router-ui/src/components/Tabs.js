@@ -10,7 +10,6 @@ import ServerTab from './ServerTab';
 import SmartAppTab from './SmartAppTab';
 import AsusTab from './AsusTab';
 
-
 export default
 @inject('tabsStore', 'componentStateStore')
 @observer
