@@ -247,7 +247,7 @@ pm2 save
 1. get  applicationId and secret from SmartApp  
     - open smartapp on phone: ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/SecretAppIdPhone.png?raw=true)  
     or  
-    - open smartapp on ![smartthing portal](https://graph.api.smartthings.com):   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/installedSmartapps.png?raw=true)   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectsSmartApp.png?raw=true)   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/AppIdSecretWeb.png?raw=true)  
+    - open smartapp on [smartthing portal](https://graph.api.smartthings.com):   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/installedSmartapps.png?raw=true)   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/selectsSmartApp.png?raw=true)   ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/AppIdSecretWeb.png?raw=true)  
 2. open link http:/<YOUR_SERVER_IP>:5000  
 3. goto "SmartThing Devices" Tab  
 4. set applicationId and secret from step 1, and click "add Device" ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/ManuallyAddDevice.png?raw=true)  
