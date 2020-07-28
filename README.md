@@ -78,7 +78,7 @@ Mikrotik:
 curl -sSL https://raw.githubusercontent.com/vzakharchenko/Router-as-Presence-sensor/master/install.sh | bash
 ```    
 or  
-[Manual Server Installation Steps](https://github.com/vzakharchenko/Router-as-Presence-sensor#manual-server-installation-steps)
+[Manual Server Installation Steps](https://github.com/vzakharchenko/Router-as-Presence-sensor#manual-server-installation-steps)  
 2. open link http:/<YOUR_SERVER_IP>:5000  
 3. open router Setting tab  ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/routerSetting.png?raw=true)  
 4. select router type: asus or tplink or mikrotik  
