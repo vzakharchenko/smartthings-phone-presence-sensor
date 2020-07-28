@@ -6,8 +6,8 @@
     With this project you can use your router as a presence detector for your phones.
     Reads known personal mobile device's MAC address(using DHCP leases) to check each person's presence.
 ## Features
-- ![can work without Smartthings hub](https://github.com/vzakharchenko/Router-as-Presence-sensor#installation-steps-without-smartthings-hub)  
-- ![can setup outside your network(communicate directly with cloud)](https://github.com/vzakharchenko/Router-as-Presence-sensor#installation-outside-your-network)  
+- [work without Smartthings hub](https://github.com/vzakharchenko/Router-as-Presence-sensor#installation-steps-without-smartthings-hub)  
+- [setup outside your network(communicate directly with cloud)](https://github.com/vzakharchenko/Router-as-Presence-sensor#installation-outside-your-network)  
 - Presence sensor based on DHCP lease.  
 - can detect mobile phone in sleep state  
 - support mikrotik, asus, tplink  
