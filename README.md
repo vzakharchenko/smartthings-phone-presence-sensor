@@ -252,3 +252,20 @@ pm2 save
 3. goto "SmartThing Devices" Tab  
 4. set applicationId and secret from step 1, and click "add Device" ![](https://github.com/vzakharchenko/Router-as-Presence-sensor/blob/master/img/ManuallyAddDevice.png?raw=true)  
 
+## Protect Admin UI using [keycloak SSO](https://www.keycloak.org/) (Optional)
+1. download keycloak.json from the keycloak admin ui [https://www.keycloak.org/docs/latest/securing_apps/](https://www.keycloak.org/docs/latest/securing_apps/).
+2. save keycloak.json to [./config/keycloak.json](/config)
+
+example of keycloak.json
+```json
+{
+  "realm": "REALM",
+  "auth-server-url": "https://localhost:8090/auth",
+  "ssl-required": "external",
+  "resource": "testClient",
+  "credentials": {
+    "secret": "secret"
+  },
+  "confidential-port": 0
+}
+```
