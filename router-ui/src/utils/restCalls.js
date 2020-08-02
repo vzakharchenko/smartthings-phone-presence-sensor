@@ -10,7 +10,7 @@ export function fetchData(url, method = 'GET', headers) {
       url,
       method,
       headers,
-      transformResponse: req => req,
+      transformResponse: (req) => req,
       withCredentials: true,
     }).then((response) => {
       resolve(response);
@@ -27,7 +27,7 @@ export function sendData(url, method = 'POST', data, headers) {
       url,
       method,
       data,
-      transformResponse: req => req,
+      transformResponse: (req) => req,
       headers,
       withCredentials: true,
     }).then((response) => {

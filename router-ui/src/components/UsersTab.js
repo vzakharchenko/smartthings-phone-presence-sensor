@@ -58,7 +58,7 @@ class UsersTab extends React.Component {
                         username, macs, label, shard,
                       } = user;
                       return (macs && macs.length > 0
-                        ? macs.map(mac => (
+                        ? macs.map((mac) => (
                           <tr key={`${username}|${mac}`}>
                             <td>{label}</td>
                             <td>
@@ -69,7 +69,7 @@ class UsersTab extends React.Component {
                               >
                                 {!shard ? <option value="0" selected /> : null }
                                 {smartappSetting.map(
-                                  smartappShard => (shard && smartappShard === shard
+                                  (smartappShard) => (shard && smartappShard === shard
                                     ? (
                                       <option
                                         value={shard}
@@ -109,7 +109,7 @@ class UsersTab extends React.Component {
                               >
                                 {!shard ? <option value="0" selected /> : null }
                                 {smartappSetting.map(
-                                  smartappShard => (shard && smartappShard === shard
+                                  (smartappShard) => (shard && smartappShard === shard
                                     ? (
                                       <option
                                         value={smartappShard}
@@ -140,7 +140,8 @@ class UsersTab extends React.Component {
                           </tr>
                         )
                       );
-                    })}
+                    })
+}
           </tbody>
         </Table>
       )

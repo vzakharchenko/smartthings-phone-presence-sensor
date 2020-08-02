@@ -20,9 +20,6 @@ jobs:
           name: backend lint
           command: npm run lint
       - run:
-          name: ui lint
-          command: cd router-ui && npm run lint
-      - run:
           name:  ui build
           command: cd router-ui && npm run build:prod
 

@@ -6,7 +6,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
 
 const htmlPlugin = new HtmlWebPackPlugin({
-  template: './src/index.html',
+  template: './index.html',
   filename: './index.html',
 });
 

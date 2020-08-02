@@ -43,13 +43,14 @@ class SmartAppTab extends React.Component {
           </thead>
           <tbody>
             {
-              smartappSetting.map(shard => (
+              smartappSetting.map((shard) => (
                 <tr key={shard}>
                   <td>{shard}</td>
                   <td />
                   <td />
                 </tr>
-              ))}
+              ))
+}
             <tr key="newShard">
               <td>
                 <ControlLabel>SmartApp Url</ControlLabel>

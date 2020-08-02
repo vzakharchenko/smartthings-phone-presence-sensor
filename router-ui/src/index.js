@@ -17,8 +17,8 @@ const stores = {
 // For easier debugging
 window._____APP_STATE_____ = stores; // eslint-disable-line no-underscore-dangle
 
-
 const Index = () => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <Provider {...stores}>
     <App />
   </Provider>

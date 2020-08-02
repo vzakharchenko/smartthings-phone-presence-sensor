@@ -28,4 +28,3 @@ jobs:
     - run: npm run lint
     - run: cd router-ui && npm i
     - run: cd router-ui && npm run build:prod
-    - run: cd router-ui && npm run lint
