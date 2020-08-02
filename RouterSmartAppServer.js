@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -52,12 +51,10 @@ server.use(cors(corsOptions));
 
 connectKeycloak(server);
 
-
 server.get('/health', cors(corsOptions), (req, res) => {
   const status = { status: 'OK' };
-  res.send(JSON.stringify(status));
+  res.send(JSON.stringify(status, null, 1));
 });
-
 
 // server.get('/createGuestNetwork', cors(corsOptions), (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'application/json' });
