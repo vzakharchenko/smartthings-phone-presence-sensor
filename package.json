@@ -18,6 +18,27 @@
       "browser": false,
       "jest": true
     },
+    "keywords": [
+      "dhcp lease",
+      "mobile",
+      "presence sensor",
+      "router",
+      "smartthings-device",
+      "smartapp",
+      "smartapp-source",
+      "smartthings",
+      "smartthings-smartapp",
+      "smartthings-hub"
+      "sensor",
+      "presence-sensor",
+      "dhcp-leases",
+      "dhcp-lease",
+      "dhcp-lease-data",
+      "mikrotik",
+      "asus-routers",
+      "tplink",
+      "tplink-api"
+    ],
     "rules": {
       "no-console": 0,
       "prefer-promise-reject-errors": 0,

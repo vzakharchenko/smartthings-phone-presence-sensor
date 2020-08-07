@@ -17,7 +17,7 @@ definition(
         name: "WiFi Device Presence",
         namespace: "vzakharchenko",
         author: "Vasyl Zakharchenko",
-        description: "WiFi Presence. How to use: https://github.com/vzakharchenko/Router-as-Presence-sensor",
+        description: "WiFi Presence. How to use: https://github.com/vzakharchenko/smartthings-phone-presense-sensor",
         category: "My Apps",
         iconUrl: "https://cdn3.iconfinder.com/data/icons/mobile-1/100/Icon_SmartphoneWiFi2-512.png",
         iconX2Url: "https://cdn3.iconfinder.com/data/icons/mobile-1/100/Icon_SmartphoneWiFi2-512.png",
