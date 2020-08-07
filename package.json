@@ -1,6 +1,6 @@
 {
   "name": "smartthings-phone-presence-sensor",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Presence detection by reading leases on DHCP server",
   "main": "RouterSmartAppServer.js",
   "scripts": {
