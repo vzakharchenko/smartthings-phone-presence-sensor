@@ -266,7 +266,7 @@ pm2 save
 
 ## Protect Admin UI using [keycloak SSO](https://www.keycloak.org/) (Optional)
 1. download keycloak.json from the keycloak admin ui [https://www.keycloak.org/docs/latest/securing_apps/](https://www.keycloak.org/docs/latest/securing_apps/).
-2. save keycloak.json to [./config/keycloak.json](/config)
+2. save keycloak.json to /opt/config/router/keycloak.json or [./config/keycloak.json](/config)
 
 example of keycloak.json
 ```json
