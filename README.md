@@ -75,7 +75,11 @@ Mikrotik:
 ## Installation Steps with Smartthings Hub:
 1. Install server
 ```bash
-curl -sSL https://raw.githubusercontent.com/vzakharchenko/smartthings-phone-presense-sensor/master/install.sh | bash
+sudo npm i pm2 -g
+sudo env PATH=$PATH:/usr/bin `npm root -g`/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
+sudo npm i smartthings-phone-presence-sensor -g
+sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
+sudi pm2 save
 ```
 or
 [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#manual-server-installation-steps)
@@ -96,7 +100,11 @@ or
 
 1. Install server
 ```bash
-curl -sSL https://raw.githubusercontent.com/vzakharchenko/smartthings-phone-presense-sensor/master/install.sh | bash
+sudo npm i pm2 -g
+sudo env PATH=$PATH:/usr/bin `npm root -g`/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
+sudo npm i smartthings-phone-presence-sensor -g
+sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
+sudi pm2 save
 ```
 or
 [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#manual-server-installation-steps)
@@ -117,7 +125,11 @@ or
 
 1. Install server
 ```bash
-curl -sSL https://raw.githubusercontent.com/vzakharchenko/smartthings-phone-presense-sensor/master/install.sh | bash
+sudo npm i pm2 -g
+sudo env PATH=$PATH:/usr/bin `npm root -g`/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
+sudo npm i smartthings-phone-presence-sensor -g
+sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
+sudi pm2 save
 ```
 or
 [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#manual-server-installation-steps)
