@@ -28,7 +28,7 @@
       "smartapp-source",
       "smartthings",
       "smartthings-smartapp",
-      "smartthings-hub"
+      "smartthings-hub",
       "sensor",
       "presence-sensor",
       "dhcp-leases",
