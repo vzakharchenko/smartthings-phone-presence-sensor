@@ -1,6 +1,6 @@
 {
   "name": "smartthings-phone-presence-sensor",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Presence detection by reading leases on DHCP server",
   "main": "RouterSmartAppServer.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "start-boot": "pm2 start RouterSmartAppServer.js"
   },
   "author": "vzakharchenko",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb/base",
