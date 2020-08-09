@@ -79,7 +79,7 @@ sudo wget -qO- https://getpm2.com/install.sh | bash
 sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ${currentUser} --hp ${HOME}
 sudo npm i smartthings-phone-presence-sensor -g
 sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
-sudi pm2 save
+sudo pm2 save
 ```
 or
 [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#manual-server-installation-steps)
