@@ -82,7 +82,7 @@ sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppSer
 sudo pm2 save
 ```
 or  
-[Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#manual-server-installation-steps)  
+[Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)  
 2. open link http:/<YOUR_SERVER_IP>:5000  
 3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/routerSetting.png?raw=true)  
 4. select router type: asus or tplink or mikrotik  
@@ -107,7 +107,7 @@ sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppSer
 sudi pm2 save
 ```
 or  
-[Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/#manual-server-installation-steps)  
+[Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)  
 2. open link http:/<YOUR_SERVER_IP>:5000  
 3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/routerSetting.png?raw=true)  
 4. select router type: asus or tplink or mikrotik  
@@ -211,7 +211,7 @@ pm2 save
 1. open https://graph.api.smartthings.com/location/list with your samsung account  
 2. select your location ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/Location.png?raw=true)  
 3. add new smartapp ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/addNewSmartApp.png?raw=true)  
-4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/smartthings-phone-presense-sensor/master/smartapps/WiFi%20%20Presence.groovy ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/createNewSmartApp.png?raw=true)  
+4. select "From Code" insert code from https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/smartapps/WiFi%20%20Presence.groovy ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/createNewSmartApp.png?raw=true)  
 5. open App-Setting ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/selectAppSetting.png?raw=true)  
 6. enable oauth in smartapp![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/enableOAuth.png?raw=true)  
 7.  save and publish![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/saveAndPublish.png?raw=true)  
@@ -220,7 +220,7 @@ pm2 save
 1. open https://graph.api.smartthings.com/location/list with your samsung account  
 2. select your location ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/Location.png?raw=true)  
 3. goto "My Device Handlers" -> "Create New Device Handler"![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/newDeviceHandler.png?raw=true)  
-4. select "From Code" insert code from https://raw.githubusercontent.com/vzakharchenko/smartthings-phone-presense-sensor/master/deviceHandler/WifiPresence.groovy ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/newDeviceHandler2.png?raw=true)  
+4. select "From Code" insert code from https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/smartapps/WiFi%20%20Presence.groovy ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/newDeviceHandler2.png?raw=true)  
 
 ## Add a new SmartApp to [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)
 1. install [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android)  
