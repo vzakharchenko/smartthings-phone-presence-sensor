@@ -92,7 +92,7 @@ or
 8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-smartapp-source)  
 9. [Create new device handler](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-device-handler)  
 10. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings-classic)  
-11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#assign-phone-mac-address-to--smartthing-device)  
+11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#assign-phone-mac-address-to--smartthing-device)  
 12. add more devices if necessary, for this repeat steps 7-10 to do this  
 13. now you can use Smartthings Device for automation  
 
@@ -116,8 +116,8 @@ or
 7. set login and password of router  web admin UI  
 8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-smartapp-source)  
 9. [Create new device handler](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/#install-device-handler)  
-10. [Add new SmartApp to SmartThings Classic without Smartthings Hub](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#add-a-new-smartapp-to-smartthings-classic-without-smartthings-hub)  
-11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#assign-phone-mac-address-to--smartthing-device)  
+10. [Add new SmartApp to SmartThings Classic without Smartthings Hub](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings-classic-without-smartthings-hub)  
+11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#assign-phone-mac-address-to--smartthing-device)  
 12. add more devices if necessary, for this repeat steps 7-10 to do this  
 13. now you can use Smartthings Device for automation  
 
@@ -141,7 +141,7 @@ or
 7. set login and password of router  web admin UI  
 8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-smartapp-source)  
 9. [Create new device handler](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/#install-device-handler)  
-10. [Add new SmartApp to SmartThings Classic with device name](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#add-a-new-smartapp-to-smartthings-classic-outside-of-network)  
+10. [Add new SmartApp to SmartThings Classic with device name](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings-classic-outside-network)  
 11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#assign-phone-mac-address-to--smartthing-device)  
 12. add more devices if necessary, for this repeat steps 7-10 to do this  
 13. now you can use Smartthings Device for automation  
