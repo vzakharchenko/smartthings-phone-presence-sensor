@@ -11,6 +11,14 @@
   },
   "author": "vzakharchenko",
   "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/vzakharchenko/smartthings-phone-presence-sensor/issues"
+  },
+  "homepage": "https://github.com/vzakharchenko/smartthings-phone-presence-sensor#readme",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vzakharchenko/smartthings-phone-presence-sensor.git"
+  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb/base",
