@@ -17,7 +17,7 @@
     "email": "vaszakharchenko@gmail.com"
   },
   "homepage": "https://github.com/vzakharchenko/smartthings-phone-presence-sensor#readme",
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/vzakharchenko/smartthings-phone-presence-sensor.git"
   },
