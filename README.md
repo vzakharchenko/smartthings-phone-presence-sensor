@@ -1,6 +1,7 @@
 # smartthings router connection
 
-![Node.js CI](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/workflows/Node.js%20CI/badge.svg)  
+![Node.js CI](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/workflows/Node.js%20CI/badge.svg)   
+[![NPM](https://nodei.co/npm/smartthings-phone-presence-sensor.png)](https://npmjs.org/package/smartthings-phone-presence-sensor)
 [![donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://secure.wayforpay.com/button/b8390c46bf24a)  
 
 ## Description
