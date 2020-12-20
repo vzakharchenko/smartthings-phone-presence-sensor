@@ -1,6 +1,6 @@
 {
   "name": "smartthings-phone-presence-sensor",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Presence detection by reading leases on DHCP server",
   "main": "RouterSmartAppServer.js",
   "scripts": {
@@ -11,8 +11,10 @@
   },
   "author": "vzakharchenko",
   "license": "Apache-2.0",
+  "funding": "https://secure.wayforpay.com/button/b8390c46bf24a",
   "bugs": {
-    "url": "https://github.com/vzakharchenko/smartthings-phone-presence-sensor/issues"
+    "url": "https://github.com/vzakharchenko/smartthings-phone-presence-sensor/issues",
+    "email": "vaszakharchenko@gmail.com"
   },
   "homepage": "https://github.com/vzakharchenko/smartthings-phone-presence-sensor#readme",
    "repository": {
