@@ -99,6 +99,8 @@ sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppSer
 sudo pm2 save
 ```
 or  
+[Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)  
+or  
 [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)  
 2. open link http:/<YOUR_SERVER_IP>:5000  
 3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/routerSetting.png?raw=true)  
@@ -124,6 +126,8 @@ sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppSer
 sudi pm2 save
 ```
 or  
+[Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)  
+or  
 [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)  
 2. open link http:/<YOUR_SERVER_IP>:5000  
 3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/routerSetting.png?raw=true)  
@@ -148,6 +152,8 @@ sudo npm i smartthings-phone-presence-sensor -g
 sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
 sudi pm2 save
 ```
+or  
+[Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)  
 or  
 [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)  
 2. open link http:/<YOUR_SERVER_IP>:5000  
