@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
 
@@ -34,7 +33,6 @@ const definePluginConfig = {
 };
 
 const plugins = [
-  new webpack.optimize.OccurrenceOrderPlugin(true),
   new webpack.DefinePlugin(definePluginConfig),
   htmlPlugin,
   //    copyConfig,
@@ -44,8 +42,6 @@ const plugins = [
 const optimization = {};
 if (env === 'production') {
   optimization.minimize = true;
-  optimization.namedModules = false;
-  optimization.namedChunks = false;
   optimization.mangleWasmImports = true;
   optimization.moduleIds = 'hashed';
   optimization.minimizer = [new TerserPlugin({
