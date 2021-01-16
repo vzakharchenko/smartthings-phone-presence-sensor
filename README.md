@@ -74,6 +74,21 @@ TpLink:
 Mikrotik:  
  - all devices
 
+## Docker Installation
+- Configuration inside Docker container
+```
+docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 --restart=always vassio/smartthings-phone-presence-sensor:latest
+```
+- Configuration outside Docker container
+```
+echo "{}">/opt/config/routerConfig.json
+docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/routerConfig.json:/opt/config/router/routerConfig.json --restart=always vassio/smartthings-phone-presence-sensor:latest
+```
+- Configuration outside Docker container with keycloak.json
+```
+echo "{}">/opt/config/routerConfig.json
+docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/routerConfig.json:/opt/config/router/routerConfig.json -v `pwd`/keycloak.json:/opt/config/router/keycloak.json --restart=always vassio/smartthings-phone-presence-sensor:latest
+```
 ## Installation Steps with Smartthings Hub:  
 1. Install server  
 ```bash
@@ -100,7 +115,7 @@ or
 
 ## Installation Steps without Smartthings Hub:  
 
-1. Install server  
+1. Install server
 ```bash
 sudo npm i pm2 -g
 sudo env PATH=$PATH:/usr/bin `npm root -g`/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
