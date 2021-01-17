@@ -4,6 +4,9 @@ LABEL author="Vasyl Zakharchenko"
 LABEL email="vaszakharchenko@gmail.com"
 LABEL name="smartthings-phone-presence-sensor"
 ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y curl gnupg2 ca-certificates
+RUN update-ca-certificates --fresh
+RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get update && apt-get install -y nodejs npm
 RUN npm i pm2 -g
 # Bundle APP files
