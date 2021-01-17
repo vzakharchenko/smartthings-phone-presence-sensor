@@ -6,7 +6,7 @@ LABEL name="smartthings-phone-presence-sensor"
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y curl gnupg2 ca-certificates
 RUN update-ca-certificates --fresh
-RUN curl -sSL https://deb.nodesource.com/setup_15.x | bash
+RUN curl -sSL https://deb.nodesource.com/setup_14.x | bash
 RUN apt-get update && apt-get install -y nodejs
 RUN npm i pm2 -g
 # Bundle APP files
