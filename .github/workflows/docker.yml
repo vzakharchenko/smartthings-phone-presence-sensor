@@ -7,6 +7,7 @@ on:
 jobs:
   multi:
     runs-on: ubuntu-latest
+    environment: DOCKER
     steps:
       -
         name: Checkout
