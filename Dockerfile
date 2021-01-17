@@ -18,12 +18,13 @@ RUN mkdir /opt/smartthings-phone-presence-sensor/router-ui
 COPY router-ui/package.json /opt/smartthings-phone-presence-sensor/router-ui/package.json
 COPY router-ui/src /opt/smartthings-phone-presence-sensor/router-ui/src
 COPY router-ui/webpack.config.js /opt/smartthings-phone-presence-sensor/router-ui/webpack.config.js
+RUN cd /opt/smartthings-phone-presence-sensor/ && npm install
 RUN cd /opt/smartthings-phone-presence-sensor/router-ui/ && npm install
 RUN cd /opt/smartthings-phone-presence-sensor/router-ui/ && npm run build:prod
 
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
-RUN cd /opt/smartthings-phone-presence-sensor/ && npm install
+
 COPY entrypoint.sh /opt/entrypoint.sh
 RUN  chmod +x /opt/entrypoint.sh
 EXPOSE 5000
