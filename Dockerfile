@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y curl gnupg2 ca-certificates
 RUN update-ca-certificates --fresh
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
-RUN apt-get update && apt-get install -y nodejs npm
+RUN apt-get update && apt-get install -y nodejs
 RUN npm i pm2 -g
 # Bundle APP files
 RUN mkdir /opt/smartthings-phone-presence-sensor/
