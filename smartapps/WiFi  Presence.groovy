@@ -25,50 +25,22 @@ definition(
 
 
 preferences {
-    page(name: "config", content: "config", refreshTimeout: 5, install: true, uninstall: true)
+    page(name: "config", content: "config", install: true, uninstall: true)
 }
 
 def config() {
-
-    if (!state.subscribe) {
-        subscribe(location, "ssdpTerm." + getURN(), locationHandler)
-        state.subscribe = true
-    }
-    int refreshCount = !state.refreshCount ? 0 : state.refreshCount as int
-    state.refreshCount = refreshCount + 1
-    def refreshInterval = refreshCount == 0 ? 2 : 5
-    //ssdp request every fifth refresh
-    if ((refreshCount % 10) == 0) {
-        ssdpDiscover();
-    }
-
-    if (state.ip && state.port) {
-        refreshInterval = 0
-    }
-    if ((state.ip || state.port) && !state.theHub) {
-        refreshInterval = 0
-    }
     def device = searchDevice();
-
-    dynamicPage(name: "config", title: " WiFi Presence Manager", refreshInterval: refreshInterval) {
+    dynamicPage(name: "config", title: " WiFi Presence Manager") {
 
         section("Device Name") {
-            if (!device) {
-                input "deviceName", "text", multiple: false, required: true
-            } else {
-                paragraph device.label
-            }
+            input "deviceName", "text", multiple: false, required: true
         }
         section("Setup my device with this IP") {
-            input "IP", "string", multiple: false, required: false, defaultValue: state.ip
+            input "IP", "text", multiple: false, required: false
         }
 
-        section("Setup my device first port") {
-            input "port", "number", multiple: false, required: false, defaultValue: state.port
-        }
-
-        section("on this hub...") {
-            input "theHub", "hub", multiple: false, required: false, defaultValue: state.hub
+        section("Setup my device with this Port") {
+            input "port", "number", multiple: false, required: false
         }
 
         section("Server info") {
@@ -92,10 +64,6 @@ def getURN() {
     return "urn:wifimobile:device:vzakharchenko:1"
 }
 
-void ssdpDiscover() {
-    sendHubCommand(new physicalgraph.device.HubAction("lan discovery " + getURN(), physicalgraph.device.Protocol.LAN))
-}
-
 def updated() {
     log.debug "Updated with settings: ${settings}"
 
@@ -112,7 +80,7 @@ def initialize() {
         state.deviceId = presentDevice.id;
     }
 
-    if (IP && port && theHub && presentDevice) {
+    if (IP && port && presentDevice) {
         apiPost("/registerDevice", null, [name: presentDevice.getId(), secret: state.accessToken, appId: app.id, label: presentDevice.getLabel()])
     }
 

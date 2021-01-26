@@ -20,7 +20,6 @@ const {
 } = require('./lib/presenceMobile');
 const logger = require('./lib/logger');
 const { saveSmartThingDeviceInfo } = require('./lib/registerDevice');
-const { ssdpServer, description } = require('./lib/ssdpConnection');
 
 const {
   getSettings, saveSetting,
@@ -165,10 +164,6 @@ server.post('/ui/assignShard', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   assignShard(req, res);
 });
-// SSDP
-server.get('/description.xml', protect(), cors(corsOptions), (req, res) => {
-  description(res);
-});
 
 server.post('/ui/removeMacToUser', protect(), cors(corsOptions), (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -179,10 +174,6 @@ server.listen(port, () => {
   installCrons();
 });
 
-// start the server
-ssdpServer.start();
-
 process.on('exit', () => {
   server.stop();
-  ssdpServer.stop();
 });
