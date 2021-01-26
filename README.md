@@ -1,20 +1,20 @@
 # smartthings router connection
 
-![Docker](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/workflows/ci/badge.svg)
-![Node.js CI](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/workflows/Node.js%20CI/badge.svg)
-[![NPM](https://nodei.co/npm/smartthings-phone-presence-sensor.png)](https://npmjs.org/package/smartthings-phone-presence-sensor)
-[![donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://secure.wayforpay.com/button/b8390c46bf24a)
+![Docker](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/workflows/ci/badge.svg)  
+![Node.js CI](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/workflows/Node.js%20CI/badge.svg)  
+[![NPM](https://nodei.co/npm/smartthings-phone-presence-sensor.png)](https://npmjs.org/package/smartthings-phone-presence-sensor)  
+[![donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://secure.wayforpay.com/button/b8390c46bf24a)  
 
 ## Description
     With this project you can use your router as a presence detector for your phones.
     Reads known personal mobile device's MAC address(using DHCP leases) to check each person's presence.
 ## Features
-- [work without Smartthings hub](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#installation-steps-without-smartthings-hub)
-- [setup outside your network(communicate directly with cloud)](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#installation-outside-your-network)
+- work without Smartthings hub!
+- [setup outside your network(Change presence status for Location where server is not installed)](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#installation-outside-your-network)
 - Presence sensor based on DHCP lease.
 - can detect mobile phone in sleep state.
 - support mikrotik, asus, tplink.
-  **Supported  [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect) and ~~ [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) applications ~~ **
+  **Supported  [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect)**  ~~and [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) applications~~
 ## Supported device list:
 Asus:
 
@@ -111,7 +111,7 @@ sudo pm2 save
 7. set login and password of router  web admin UI
 8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-smartapp-source)
 9. [Create new device handler](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-device-handler)
-10. [Add new SmartApp to SmartThings Classic](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings-classic)
+10. [Add new SmartApp to SmartThings](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings)
 11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#assign-phone-mac-address-to--smartthing-device)
 12. add more devices if necessary, for this repeat steps 7-10 to do this
 13. now you can use Smartthings Device for automation
@@ -119,6 +119,12 @@ sudo pm2 save
 
 ## Installation Outside your network:
 
+Change presence status for Location where server is not accessible.
+Example:
+ - Location 1 has server
+ - Location 2 does not have server
+ I would like to change my presence status to Leave for location 2 if my phone is in location 1.
+ 
 1. Install server
 - using npm manager:
 ```bash
@@ -138,7 +144,7 @@ sudo pm2 save
 7. set login and password of router  web admin UI
 8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-smartapp-source)
 9. [Create new device handler](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/#install-device-handler)
-10. [Add new SmartApp to SmartThings Classic with device name](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings-classic-outside-network)
+10. [Add new SmartApp to SmartThings with device name](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings-outside-network)
 11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presense-sensor#assign-phone-mac-address-to--smartthing-device)
 12. add more devices if necessary, for this repeat steps 7-10 to do this
 13. now you can use Smartthings Device for automation
