@@ -16,7 +16,7 @@
 - support mikrotik, asus, tplink.
   **Supported  [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect)**  ~~and [SmartThings Classic](https://play.google.com/store/apps/details?id=com.smartthings.android) applications~~
 ## Supported device list:
-Asus:
+- Asus:
 
     Firmware version should be later than 3.0.0.4.380:
     - All 802.11ax line up
@@ -70,9 +70,9 @@ Asus:
     - RT-N12+ B1
     - RT-N12D1
     - DSL-AC68U/R
-TpLink:
+- TpLink:
     tested on TP-LINK Touch P5
-Mikrotik:
+- Mikrotik:
  - all devices
 
 ## Docker Installation
