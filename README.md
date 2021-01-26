@@ -76,6 +76,7 @@ Mikrotik:
  - all devices
 
 ## Docker Installation
+
 - Configuration inside Docker container
 ```
 docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 --restart=always vassio/smartthings-phone-presence-sensor:latest
@@ -90,8 +91,9 @@ docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/con
 echo "{}">/opt/config/routerConfig.json
 docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/routerConfig.json:/opt/config/router/routerConfig.json -v `pwd`/keycloak.json:/opt/config/router/keycloak.json --restart=always vassio/smartthings-phone-presence-sensor:latest
 ```
-## Installation Steps with Smartthings Hub:
+## Installation Steps:
 1. Install server
+- using npm manager:
 ```bash
 sudo wget -qO- https://getpm2.com/install.sh | bash
 sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ${currentUser} --hp ${HOME}
@@ -99,10 +101,8 @@ sudo npm i smartthings-phone-presence-sensor -g
 sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
 sudo pm2 save
 ```
-or
-[Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)
-or
-[Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)
+- [Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)
+- [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)
 2. open link http:/<YOUR_SERVER_IP>:5000
 3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/routerSetting.png?raw=true)
 4. select router type: asus or tplink or mikrotik
@@ -116,47 +116,20 @@ or
 12. add more devices if necessary, for this repeat steps 7-10 to do this
 13. now you can use Smartthings Device for automation
 
-## Installation Steps without Smartthings Hub:
-
-1. Install server
-```bash
-sudo npm i pm2 -g
-sudo env PATH=$PATH:/usr/bin `npm root -g`/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
-sudo npm i smartthings-phone-presence-sensor -g
-sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
-sudi pm2 save
-```
-or
-[Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)
-or
-[Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)
-2. open link http:/<YOUR_SERVER_IP>:5000
-3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/routerSetting.png?raw=true)
-4. select router type: asus or tplink or mikrotik
-5. set ip(hostname) of router  web admin UI
-6. set port of router  web admin UI (microtik rest API sevice). Default is 80 (microtik: 8728)
-7. set login and password of router  web admin UI
-8. [install SmartApp Source](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#install-smartapp-source)
-9. [Create new device handler](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/#install-device-handler)
-10. [Add new SmartApp to SmartThings Classic without Smartthings Hub](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#add-a-new-smartapp-to-smartthings-classic-without-smartthings-hub)
-11.  [Assign Phone Mac address to  SmartThing Device](https://github.com/vzakharchenko/smartthings-phone-presence-sensor#assign-phone-mac-address-to--smartthing-device)
-12. add more devices if necessary, for this repeat steps 7-10 to do this
-13. now you can use Smartthings Device for automation
 
 ## Installation Outside your network:
 
 1. Install server
+- using npm manager:
 ```bash
-sudo npm i pm2 -g
-sudo env PATH=$PATH:/usr/bin `npm root -g`/pm2/bin/pm2 startup systemd -u ${currentUser} --hp ${HOME}
+sudo wget -qO- https://getpm2.com/install.sh | bash
+sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ${currentUser} --hp ${HOME}
 sudo npm i smartthings-phone-presence-sensor -g
 sudo pm2 start `npm root -g`/smartthings-phone-presence-sensor/RouterSmartAppServer.js
-sudi pm2 save
+sudo pm2 save
 ```
-or
-[Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)
-or
-[Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)
+- [Docker Installation](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/blob/master/README.md#docker-installation)
+- [Manual Server Installation Steps](https://github.com/vzakharchenko/smartthings-phone-presence-sensor/#manual-server-installation-steps)
 2. open link http:/<YOUR_SERVER_IP>:5000
 3. open router Setting tab  ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/routerSetting.png?raw=true)
 4. select router type: asus or tplink or mikrotik
@@ -249,9 +222,9 @@ pm2 save
 ## Add a new SmartApp to [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect&hl=en&gl=US)
 
 1. install [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect&hl=en&gl=US)
-2. open "+"->"SmartApps"![](./img/smartthingsStep1.png?raw=true) ![](./img/smartthingsStep2.png?raw=true)
-4. add "WiFi Device Presence"![](./img/smartthingsStep3.png?raw=true)
-5. set Server IP, port and Presence Sensor Name and click save ![](./img/smartthingsStep4.png?raw=true)
+2. open "+"->"SmartApps"![](./img/smartthingsStep1.png?raw=true) ![](./img/smartthingsStep2.png)
+4. add "WiFi Device Presence"![](./img/smartthingsStep3.png)
+5. set Server IP, port and Presence Sensor Name and click save ![](./img/smartthingsStep4.png)
 
 ## Add a new SmartApp to [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect&hl=en&gl=US) Outside network
 Change presence status for Location where server is not accessible.
@@ -261,9 +234,9 @@ Example:
  I would like to change my presence status to Leave for location 2 if my phone is in location 1.
 
 1. install [SmartThings](https://play.google.com/store/apps/details?id=com.samsung.android.oneconnect&hl=en&gl=US)
-2. open "+"->"SmartApps"![](./img/smartthingsStep1.png?raw=true) ![](./img/smartthingsStep2.png?raw=true)
-4. add "WiFi Device Presence"![](./img/smartthingsStep3.png?raw=true)
-5. set Presence Sensor Name and click save ![](./img/smartthingsStep6.png?raw=true)
+2. open "+"->"SmartApps"![](./img/smartthingsStep1.png?raw=true) ![](./img/smartthingsStep2.png)
+4. add "WiFi Device Presence"![](./img/smartthingsStep3.png)
+5. set Presence Sensor Name and click save ![](./img/smartthingsStep6.png)
 6. Manually add Integration between SmartApp and nodejs server
 
 ## Assign Phone Mac address to  SmartThing Device
@@ -279,7 +252,7 @@ Example:
 ## Manually add Integration between SmartApp and nodejs server
 
 1. get  applicationId and secret from SmartApp
-    - open smartapp on phone: ![](../img/smartthingsStep5.png?raw=true)
+    - open smartapp on phone: ![](../img/smartthingsStep5.png)
     or
     - open smartapp on [smartthing portal](https://graph.api.smartthings.com):   ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/installedSmartapps.png?raw=true)   ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/selectsSmartApp.png?raw=true)   ![](https://github.com/vzakharchenko/smartthings-phone-presense-sensor/blob/master/img/AppIdSecretWeb.png?raw=true)
 2. open link http:/<YOUR_SERVER_IP>:5000
