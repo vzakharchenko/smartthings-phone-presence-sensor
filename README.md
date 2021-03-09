@@ -83,15 +83,15 @@ docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 --restart=a
 ```
 - Configuration outside Docker container
 ```
-mkdir /opt/config
-echo "{}">/opt/config/routerConfig.json
-docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/routerConfig.json:/opt/config/router/routerConfig.json --restart=always vassio/smartthings-phone-presence-sensor:latest
+mkdir -p /opt/config/router
+echo "{}">/opt/config/router/routerConfig.json
+docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/router/routerConfig.json:/opt/config/routerConfig.json --restart=always vassio/smartthings-phone-presence-sensor:latest
 ```
 - Configuration outside Docker container with keycloak.json
 ```
-mkdir /opt/config
-echo "{}">/opt/config/routerConfig.json
-docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/routerConfig.json:/opt/config/router/routerConfig.json -v `pwd`/keycloak.json:/opt/config/router/keycloak.json --restart=always vassio/smartthings-phone-presence-sensor:latest
+mkdir -p /opt/config/router
+echo "{}">/opt/config/router/routerConfig.json
+docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/router/routerConfig.json:/opt/config/routerConfig.json -v /opt/config/router/keycloak.json:/opt/config/router/keycloak.json --restart=always vassio/smartthings-phone-presence-sensor:latest
 ```
 ## Installation Steps:
 1. Install server
