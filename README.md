@@ -89,7 +89,7 @@ docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/con
 ```
 - Configuration outside Docker container with keycloak.json
 ```
-/opt/config
+mkdir /opt/config
 echo "{}">/opt/config/routerConfig.json
 docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 -v /opt/config/routerConfig.json:/opt/config/router/routerConfig.json -v `pwd`/keycloak.json:/opt/config/router/keycloak.json --restart=always vassio/smartthings-phone-presence-sensor:latest
 ```
