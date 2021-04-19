@@ -76,7 +76,14 @@
  - all devices
 
 ## Docker Installation
-
+- prepare installation
+```
+sudo apt-get -y install  curl
+sudo apt-get -y remove docker docker.io containerd runc
+curl -sSL https://get.docker.com | sudo bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
 - Configuration inside Docker container
 ```
 docker run -d --name=smartthings-phone-presence-sensor  -p 5000:5000 --restart=always vassio/smartthings-phone-presence-sensor:latest
