@@ -1,0 +1,56 @@
+{
+  "name": "wifi-presence-smartapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "wifi-presence-smartapp",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config webpack.config.babel.js",
+    "lint": "eslint --quiet --ext .js validationServiceHandler.js frontEndHandler.js src",
+    "lint:fix": "eslint --fix --quiet --ext .js validationServiceHandler.js frontEndHandler.js src "
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-decorators": "^7.13.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/plugin-transform-async-to-generator": "^7.13.0",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/polyfill": "^7.10.1",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/register": "^7.13.8",
+    "@babel/runtime": "^7.13.10",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^8.0.0",
+    "dotenv-webpack": "^7.0.2",
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-plugin-import": "*",
+    "jest": "^26.6.3",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "webpack": "^5.27.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-version-file-plugin": "^0.4.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "eslintConfig": {
+    "plugins": [],
+    "extends": "airbnb/base",
+    "ignorePatterns": [
+      "node_modules/",
+      ".webpack/",
+      "cdk.out/"
+    ],
+    "rules": {
+      "no-undef": 0,
+      "import/extensions": 0,
+      "no-new": 0,
+      "import/prefer-default-export": 0,
+      "import/no-extraneous-dependencies": 0
+    }
+  },
+  "author": "vzakharchenko",
+  "license": "apache-2.0"
+}
