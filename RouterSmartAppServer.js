@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const env = require('./lib/env.js');
+const env = require('./lib/env');
 const {
   getUsers,
   assignMacToUser,
