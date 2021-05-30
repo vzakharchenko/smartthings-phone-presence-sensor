@@ -34,4 +34,4 @@ jobs:
           push: true
           tags: |
             vassio/smartthings-phone-presence-sensor:latest
-            vassio/l2tp-ipsec-radius-docker:1.3.3
+            vassio/smartthings-phone-presence-sensor:1.1.2
