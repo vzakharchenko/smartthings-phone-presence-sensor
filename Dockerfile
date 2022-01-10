@@ -10,7 +10,7 @@ RUN update-ca-certificates --fresh
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm i pm2 -g
-RUN npm i smartthings-phone-presence-sensor@1.1.2 -g
+RUN npm i smartthings-phone-presence-sensor@1.1.3 -g
 COPY entrypoint.sh /opt/entrypoint.sh
 RUN  chmod +x /opt/entrypoint.sh
 EXPOSE 5000
